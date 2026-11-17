@@ -3,7 +3,7 @@
 <head>
 <base target="_top">
 <meta charset="utf-8">
-<!-- UI_VERSION=66 -->
+<!-- UI_VERSION=67 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lead SLA Monitor</title>
 <style>
@@ -735,14 +735,13 @@ h3,.sect h3,.uphead h3{font-weight:650}
   </div>
 </div>
 
-<script src="config.js"></script>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="bridge-web.js"></script>
+<script src="firebase-config.js"></script>
+<script src="demo.js"></script>
 <script>
 (function () {
   'use strict';
   var $ = function (s) { return document.querySelector(s); };
-  var UI_VER = 34; // the server code version this page works with; otherwise the numbers are hidden
+  var UI_VER = 35; // the server code version this page works with; otherwise the numbers are hidden
   var DIM_VER = 29; // version of the 1:1 / client feedback server code this page works with
   var state = { msgs: {}, dir: '', stl: '', team: '', mcat: '', mteam: '', rem: null, tlclosed: {}, shownIds: [], openNow: {}, qt: null, sel: null, dopen: {}, tab: 'sla', month: '', dim: null, dq: '', dmodal: null, dnote: '', data: null, v6: false, view: 'init', filter: 'all', q: '', sort: 'new', open: {}, lopen: {}, modal: null, lastFocus: null, syncing: false };
 
@@ -1859,7 +1858,7 @@ h3,.sect h3,.uphead h3{font-weight:650}
     showDimModal('Add people', isOne ? 'Everyone who needs a monthly 1:1, and who they report to' : 'Accounts, their owner, and who else may see them',
       '<div class="hint" style="margin-top:12px">Paste one line per row. Separate columns with commas or tabs, so you can copy rows straight from a sheet. Hundreds of rows are fine. People already added are skipped.</div>' +
       '<div class="hint" style="margin:8px 0"><b>Columns:</b> ' + (isOne ? 'name, email, designation, reports to (name), reports to (email). The manager can be a name, an email, or both.' : 'account, owner (email or name), owner name, access (optional: names or emails, separate several with ;)') + '</div>' +
-      '<textarea id="dPaste" style="min-height:220px" placeholder="' + (isOne ? 'Agent One, a1@databeat.io, Agent, Seetal\nSeetal Rao, seetal@databeat.io, Senior Analyst, Irfan' : 'AI Tracker, Acme, aklesh@databeat.io, Aklesh, x@databeat.io; y@databeat.io') + '"></textarea>', 'Add', true);
+      '<textarea id="dPaste" style="min-height:220px" placeholder="' + (isOne ? 'Agent One, a1@example.com, Agent, Tara\nTara Rao, seetal@example.com, Senior Analyst, Ravi' : 'AI Tracker, Acme, kiran@example.com, Kiran, x@example.com; y@example.com') + '"></textarea>', 'Add', true);
   }
 
   function openAddMember(tl) {
@@ -1868,7 +1867,7 @@ h3,.sect h3,.uphead h3{font-weight:650}
     var opts = '<option value="self">' + (d.isAdmin ? 'The team lead directly' : 'Me, the team lead') + '</option>' + team.map(function (m) { return '<option value="' + esc(m.key) + '">' + esc(m.label) + '</option>'; }).join('');
     showDimModal('Add a team member', 'Someone missing from your team. They will need a 1:1 every month.',
       '<label for="mName">Name</label><input type="text" id="mName" placeholder="Full name">' +
-      '<label for="mEmail">Email (optional)</label><input type="text" id="mEmail" placeholder="name@databeat.io">' +
+      '<label for="mEmail">Email (optional)</label><input type="text" id="mEmail" placeholder="name@example.com">' +
       '<label for="mDes">Designation (optional)</label><input type="text" id="mDes" placeholder="Agent, Senior Analyst...">' +
       '<label for="mRep">Reports to</label><select id="mRep">' + opts + '</select>', 'Add member', true);
   }
@@ -1979,7 +1978,7 @@ h3,.sect h3,.uphead h3{font-weight:650}
     }).join('') : '<div class="hint" style="padding:10px 0">No one yet. Add the core team below.</div>';
     $('#dBody').innerHTML =
       '<h4 style="margin:14px 0 4px">Members (' + c.members.length + ')</h4>' + rows +
-      '<label for="ctText">Add people: names or emails, one per line</label><textarea id="ctText" style="min-height:110px" placeholder="Priya Sharma&#10;rahul.verma@databeat.io"></textarea>' +
+      '<label for="ctText">Add people: names or emails, one per line</label><textarea id="ctText" style="min-height:110px" placeholder="Priya Sharma&#10;rahul.verma@example.com"></textarea>' +
       '<div class="rsrow"><button class="btn primary sm" type="button" data-ct="add">Add to core team</button></div>' +
       '<div id="ctMsg" style="margin-top:10px">' + (msgHtml || '') + '</div>' +
       '<div class="swrow"><label class="switch"><input type="checkbox" id="ctEdit"' + (c.canEdit ? ' checked' : '') + '><span class="slider"></span></label><div><div class="swt" id="ctEditTxt">' + (c.canEdit ? 'They can update everything' : 'They can only look') + '</div><div class="hint">On: the core team can tick 1:1s, record client feedback and add team members for anyone. Off: view only.</div></div></div>' +
@@ -2076,7 +2075,7 @@ h3,.sect h3,.uphead h3{font-weight:650}
       '<h4 style="margin:16px 0 4px">Check a person</h4><div class="rsrow" style="margin-top:4px"><input type="text" id="acWho" placeholder="Name or email" autocomplete="off" style="flex:1;min-width:220px"><button class="btn primary sm" type="button" data-ac="check">Check</button></div>' +
       '<div id="acChk">' + chk + '</div><div id="acMsg" style="margin-top:8px">' + (msgHtml || '') + '</div>' +
       '<h4 style="margin:16px 0 4px">Exceptions (' + a.members.length + ')</h4>' + ex +
-      '<label for="acText">Give access to someone who is not in the group: names or emails, one per line</label><textarea id="acText" style="min-height:70px" placeholder="priya.sharma@databeat.io"></textarea>' +
+      '<label for="acText">Give access to someone who is not in the group: names or emails, one per line</label><textarea id="acText" style="min-height:70px" placeholder="priya.sharma@example.com"></textarea>' +
       '<div class="rsrow"><button class="btn sm" type="button" data-ac="add">Add</button></div>';
   }
   function acReload(r, msgHtml) { state.acc.members = r.members; renderAccess(msgHtml || ''); }
@@ -2189,7 +2188,7 @@ h3,.sect h3,.uphead h3{font-weight:650}
       '<h4 style="margin:12px 0 4px">Owner</h4><div class="ctrow">' + avatar(a.owner.name) + '<div class="who2"><b>' + esc(a.owner.name) + '</b><span>' + esc(a.owner.email) + ' · always sees this account</span></div></div>' +
       '<h4 style="margin:16px 0 4px">People with access (' + a.access.length + ')</h4>' + people +
       (a.unresolved.length ? '<div class="notebox warn" style="margin-top:8px">The sheet also lists names that could not be matched to an email: ' + a.unresolved.map(esc).join(', ') + '. They have no access yet. Add them below by email.</div>' : '') +
-      '<label for="aaText">Add a person: name or email, one per line</label><textarea id="aaText" style="min-height:70px" placeholder="priya.sharma@databeat.io"></textarea>' +
+      '<label for="aaText">Add a person: name or email, one per line</label><textarea id="aaText" style="min-height:70px" placeholder="priya.sharma@example.com"></textarea>' +
       '<div class="rsrow"><button class="btn primary sm" type="button" data-aa="add">Add</button></div><div id="aaMsg" style="margin-top:8px">' + (msgHtml || '') + '</div>' +
       '<div class="hint" style="margin-top:12px">People with access can see this account\'s feedback and update it for this month and last month. Also seeing every account: ' + every + '. Admins: ' + admins + '. Saved in the Client_Accounts tab, column AccessEmails.</div>';
   }
