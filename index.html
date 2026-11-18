@@ -3,7 +3,7 @@
 <head>
 <base target="_top">
 <meta charset="utf-8">
-<!-- UI_VERSION=67 -->
+<!-- UI_VERSION=69 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lead SLA Monitor</title>
 <style>
@@ -649,6 +649,76 @@ body{zoom:.9}
 .upc .nm{font-weight:650}
 h3,.sect h3,.uphead h3{font-weight:650}
 .nm{font-weight:650}
+
+/* ---------- phones and small tablets ---------- */
+@media (max-width:1000px){.side{height:auto}.app{min-height:100vh}}
+@media (max-width:760px){
+  body{zoom:1}
+  .app{display:block;min-height:100vh}
+  .side{position:sticky;top:0;z-index:60;height:auto;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px 10px;
+    padding:10px 14px 10px;overflow:visible;border-right:0;border-bottom:1px solid var(--line);box-shadow:0 4px 14px rgba(20,30,50,.06)}
+  .mmlogo{width:92px;margin:0}
+  .brand{padding:0 0 0 10px;margin:0;border:0;border-left:1px solid var(--line)}
+  .brand b{font-size:13.5px;white-space:nowrap}.brand small{display:none}
+  .sidefoot{display:none}
+  .sidenav{grid-column:1/-1;flex-direction:row;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin:0 -14px;padding:2px 14px}
+  .sidenav::-webkit-scrollbar{display:none}
+  .navparent{display:none}
+  .navsubs{flex-direction:row;gap:6px;margin:0;padding:0;border:0}
+  .navitem,.navsub{flex:none;white-space:nowrap;gap:6px;padding:7px 13px;border-radius:999px;font-size:13px;border:1px solid var(--line);background:var(--card);box-shadow:none}
+  .navitem svg{width:16px;height:16px}
+  .navsub .navdot{display:none}
+  .navitem[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:none}
+  .top{padding:14px 14px 4px;flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:10px}
+  .top>*{min-width:0}
+  .top h1{font-size:20px;line-height:1.2}
+  .top p{font-size:12.5px;margin-top:2px}
+  .topact{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -14px;padding:0 14px 2px}
+  .topact::-webkit-scrollbar{display:none}
+  .topact>*{flex:none}
+  .topact .btn,.topact .chip{padding:7px 12px;font-size:12.5px}
+  .me{padding:3px 12px 3px 3px}.me .av{width:28px;height:28px;font-size:11px}.me .mt b{font-size:12.5px;max-width:130px}
+  main{padding:8px 12px 40px}
+  .hero{gap:10px;margin-bottom:12px}
+  .overall{padding:16px;gap:14px;flex-wrap:wrap;border-radius:14px}
+  .ring{width:84px;height:84px}.ring b{font-size:21px}.ring span{font-size:11px}
+  .overall h2{font-size:16px}.overall p{font-size:12px}
+  .ovbar{min-width:0;flex-basis:100%}
+  .kpis{display:flex;overflow-x:auto;gap:8px;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -12px;padding:2px 12px 4px}
+  .kpis::-webkit-scrollbar{display:none}
+  .kpi{flex:0 0 128px;scroll-snap-align:start;padding:10px 12px;gap:1px}
+  .khead{margin-bottom:2px}.kic{width:26px;height:26px;font-size:12px}
+  .kn{font-size:22px}.kl{font-size:12.5px}.kd{display:none}.kbar{margin-top:6px;height:4px}
+  .toolbar{gap:8px;margin:4px 0 12px}
+  .seg{display:flex;width:100%;overflow-x:auto;scrollbar-width:none}
+  .seg::-webkit-scrollbar{display:none}
+  .seg button{flex:1 0 auto;padding:7px 10px;font-size:13px;white-space:nowrap}
+  .orgsel,.select{max-width:none;flex:1 1 calc(50% - 8px);min-width:0;font-size:13px}
+  #chips{flex-wrap:nowrap!important;overflow-x:auto;scrollbar-width:none;width:calc(100% + 24px);margin:0 -12px;padding:0 12px}
+  #chips::-webkit-scrollbar{display:none}
+  #chips>*{flex:none}
+  .toolbar .sp{display:none}
+  .search{min-width:0;flex:1 1 100%}
+  .panel,.reqs{border-radius:14px}
+  .phead{flex-wrap:wrap;gap:6px;padding:12px 14px 10px}
+  .rhead{padding:12px 14px}
+  .dbar{padding:12px 14px 4px}
+  .howbox{margin:0 10px 10px}
+  .mbar{padding:12px 14px}.mbar .select{min-width:0;flex:1 1 100%}
+  .msg{padding:12px 14px}
+  .upgrid{grid-template-columns:1fr}
+  .sum{padding:14px;margin-bottom:12px;border-radius:14px}
+  .sum h2{font-size:17px;line-height:1.3}.sum p{font-size:12.5px;margin:4px 0 10px}
+  .eyerow{margin:0 0 10px;gap:8px}.eyerow .eyebrow{font-size:12.5px}
+  .scopeseg{width:100%;display:flex}.scopeseg button{flex:1}
+  .dctl{gap:6px}.dctl .btn{padding:6px 10px;font-size:12.5px}
+  .dctl .select{flex:1 1 calc(50% - 6px);min-width:0}.dctl .search{flex:1 1 100%;min-width:0}
+  .tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .big b{font-size:20px}
+  .mbar .row{gap:6px}
+  .phead .hint{flex-basis:100%;font-size:12px}
+  .content>.top .me{display:none}
+}
 </style>
 </head>
 <body>
@@ -741,7 +811,7 @@ h3,.sect h3,.uphead h3{font-weight:650}
 (function () {
   'use strict';
   var $ = function (s) { return document.querySelector(s); };
-  var UI_VER = 35; // the server code version this page works with; otherwise the numbers are hidden
+  var UI_VER = 36; // the server code version this page works with; otherwise the numbers are hidden
   var DIM_VER = 29; // version of the 1:1 / client feedback server code this page works with
   var state = { msgs: {}, dir: '', stl: '', team: '', mcat: '', mteam: '', rem: null, tlclosed: {}, shownIds: [], openNow: {}, qt: null, sel: null, dopen: {}, tab: 'sla', month: '', dim: null, dq: '', dmodal: null, dnote: '', data: null, v6: false, view: 'init', filter: 'all', q: '', sort: 'new', open: {}, lopen: {}, modal: null, lastFocus: null, syncing: false };
 
@@ -1069,7 +1139,7 @@ h3,.sect h3,.uphead h3{font-weight:650}
     var upOf = function (e) { return (d.up || {})[String(e).toLowerCase()] || []; };
     var base = all.filter(function (m) { return (!b || (m.email && (m.email === b || upOf(m.email).indexOf(b) !== -1))) && (!q || (m.text + ' ' + m.sender).toLowerCase().indexOf(q) !== -1); });
     var teamLabel = function (t) { return t === 'Other' || t === 'Leadership' ? t : t + ' team'; };
-    var catLabel = function (c) { return c === 'Request' ? 'Requests' : (c === 'Question' ? 'Questions to a person' : (c === 'Issue' ? 'Issues' : (c === 'Regular' ? 'Regular messages' : c + 's'))); };
+    var catLabel = function (c) { return c === 'Meeting / MOM' ? 'Meeting agenda / MOM' : c === 'Request' ? 'Requests' : (c === 'Question' ? 'Questions to a person' : (c === 'Issue' ? 'Issues' : (c === 'Regular' ? 'Regular messages' : c + 's'))); };
     var tally = function (key) { var o = {}; base.forEach(function (m) { o[m[key]] = (o[m[key]] || 0) + 1; }); return o; };
     var cats = tally('category'), teamsN = tally('team');
     if (state.mcat && !cats[state.mcat]) state.mcat = '';
