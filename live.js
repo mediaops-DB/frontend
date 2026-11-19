@@ -174,7 +174,7 @@
 
 
   /* ---------------------------------------------------------------- Copilot: the chat assistant (answers come from Apps Script: Copilot.gs) */
-  var CP = { open: false, busy: false, msgs: [], el: null };
+  var CP = { open: false, busy: false, slow: false, viaStore: false, msgs: [], el: null };
   var CP_URL = String(window.COPILOT_URL || '');
   var SPARK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>';
   var SUGGEST = [
@@ -250,10 +250,23 @@
       else h += '<div class="m a' + (m.error ? ' err' : '') + '"><span class="mini">' + SPARK + '</span><div style="min-width:0;max-width:86%"><div class="bb" style="max-width:100%">' + md(m.text) + '</div>' +
         (m.error ? '' : '<div class="meta"><span>' + esc(m.asOf ? 'Data as of ' + m.asOf : '') + '</span><button type="button" data-cpcopy="' + i + '">Copy</button></div>') + '</div></div>';
     });
-    if (CP.busy) h += '<div class="m a"><span class="mini">' + SPARK + '</span><div class="bb"><span class="ty" aria-label="Copilot is thinking"><i></i><i></i><i></i></span></div></div>';
+    if (CP.busy) h += '<div class="m a"><span class="mini">' + SPARK + '</span><div class="bb"><span class="ty" aria-label="Copilot is thinking"><i></i><i></i><i></i></span>' +
+      (CP.slow ? '<div style="font-size:12px;color:#6b7b80;margin-top:4px">Reading your latest data… this can take up to a minute.</div>' : '') + '</div></div>';
     bd.innerHTML = h;
     bd.scrollTop = bd.scrollHeight;
     CP.el.querySelector('.sd').disabled = CP.busy;
+  }
+  async function cpViaStore(q, history) {
+    var ref = await fb.fs.addDoc(fb.fs.collection(db, 'actions'), { by: me, fn: 'copilotAsk', args: JSON.stringify([q, history]), status: 'new', at: new Date().toISOString() });
+    return new Promise(function (ok, bad) {
+      var stop = null, t = setTimeout(function () { if (stop) stop(); bad(new Error('Copilot did not answer in time. The Apps Script timer (firestoreQuick) may be stopped.')); }, 180000);
+      stop = fb.fs.onSnapshot(ref, function (s) {
+        var x = s.data() || {};
+        if (!x.status || x.status === 'new') return;
+        clearTimeout(t); stop();
+        try { var r = JSON.parse(x.json || '{}'); ok(r.ok ? r.result : { ok: false, error: r.error }); } catch (e) { bad(e); }
+      }, function (e) { clearTimeout(t); bad(e); });
+    });
   }
   async function cpAsk(q) {
     q = String(q || '').trim();
@@ -261,15 +274,22 @@
     var history = CP.msgs.filter(function (m) { return !m.error; }).slice(-10).map(function (m) { return { role: m.role, text: m.text }; });
     CP.msgs.push({ role: 'user', text: q });
     CP.busy = true; cpRender(); cpSave();
-    var reply;
-    try {
-      if (!CP_URL) throw new Error('Copilot is not connected yet: the admin has to add COPILOT_URL to firebase-config.js.');
-      var tok = await auth.currentUser.getIdToken();
-      var r = await fetch(CP_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ idToken: tok, question: q, history: history }) });
-      var j = await r.json();
+    var reply, j = null;
+    CP.slow = false;
+    var slowT = setTimeout(function () { CP.slow = true; if (CP.busy) cpRender(); }, 6000);
+    try {   // 1. the fast route: the Copilot web address (needs its deployment open to "Anyone")
+      if (CP_URL && !CP.viaStore) {
+        var tok = await auth.currentUser.getIdToken();
+        var r = await fetch(CP_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ idToken: tok, question: q, history: history }) });
+        j = await r.json();
+      }
+    } catch (e) { j = null; CP.viaStore = true; }   // not reachable: use the Firestore route from now on
+    try {   // 2. the Firestore route: Apps Script answers it within about a minute
+      if (!j) j = await cpViaStore(q, history);
       reply = j.ok ? { role: 'assistant', text: j.answer, asOf: j.asOf } : { role: 'assistant', text: j.error || 'Copilot could not answer.', error: true };
-    } catch (e) { reply = { role: 'assistant', text: (e && e.message && /COPILOT_URL/.test(e.message)) ? e.message : 'Copilot could not be reached. Check your connection and try again.', error: true }; }
-    CP.busy = false;
+    } catch (e2) { reply = { role: 'assistant', text: (e2 && e2.message) || 'Copilot could not be reached. Please try again.', error: true }; }
+    clearTimeout(slowT);
+    CP.busy = false; CP.slow = false;
     CP.msgs.push(reply);
     cpRender(); cpSave();
   }
