@@ -3,7 +3,7 @@
 <head>
 <base target="_top">
 <meta charset="utf-8">
-<!-- UI_VERSION=69 -->
+<!-- UI_VERSION=71 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lead SLA Monitor</title>
 <style>
@@ -650,6 +650,105 @@ body{zoom:.9}
 h3,.sect h3,.uphead h3{font-weight:650}
 .nm{font-weight:650}
 
+
+/* ---------- tabs across the top (v70) ---------- */
+@media (min-width:761px){
+  .app{display:block}
+  .side{position:sticky;top:0;z-index:60;height:auto!important;flex-direction:row;flex-wrap:wrap;align-items:center;gap:0 16px;padding:10px 34px 0;border-right:0;border-bottom:1px solid var(--sbline);box-shadow:0 4px 16px rgba(20,30,50,.05)}
+  .mmlogo{width:128px;margin:0}
+  .brand{padding:0 0 0 16px;margin:0;border:0;border-left:1px solid var(--sbline)}
+  .sidefoot{display:none}
+  .sidenav{flex-basis:100%;flex-direction:row;gap:2px;overflow-x:auto;scrollbar-width:none;margin:8px -34px 0;padding:0 30px}
+  .sidenav::-webkit-scrollbar{display:none}
+  .navitem{flex:none;white-space:nowrap;gap:8px;padding:11px 13px 10px;border-radius:0;font-size:14px;background:transparent!important;box-shadow:none!important;border-bottom:2.5px solid transparent}
+  .navitem svg{width:17px;height:17px}
+  .navitem:hover{color:var(--sbhi);border-bottom-color:var(--line)}
+  .navitem[aria-selected="true"]{color:var(--brand-ink);border-bottom-color:var(--brand)}
+  .top{padding-top:20px}
+}
+.navitem .soon,.scard .soon{font-style:normal;font-size:10px;font-weight:650;letter-spacing:.04em;text-transform:uppercase;margin-left:6px;padding:1px 6px;border-radius:999px;background:var(--panel2);color:var(--muted);vertical-align:1px}
+.gbar{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 0 14px}
+.gbar::-webkit-scrollbar{display:none}
+.gbar button{flex:none;white-space:nowrap;padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--sbtx);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+.gbar button:hover{border-color:var(--brand)}
+.gbar button[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+/* summary */
+.sumhead{display:flex;align-items:flex-end;justify-content:space-between;margin:4px 0 16px}
+.sumhead .kicker{color:var(--muted);font-size:13px}
+.sumhead h2{font-size:20px;font-weight:650;letter-spacing:-.01em;margin-top:2px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.scard{appearance:none;font:inherit;color:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px;padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:var(--card);box-shadow:0 1px 2px rgba(20,30,50,.05);transition:box-shadow .15s,transform .15s,border-color .15s;min-height:190px}
+.scard:hover{box-shadow:0 8px 22px rgba(20,30,50,.09);transform:translateY(-1px);border-color:var(--brand)}
+.schead{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.schead b{font-size:14.5px;font-weight:650}
+.sic{width:32px;height:32px;border-radius:10px;background:var(--brand-soft);color:var(--brand-ink);display:grid;place-items:center;flex:none}
+.sic svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sgo{margin-left:auto;font-size:12.5px;color:var(--brand-ink);opacity:0;transition:opacity .15s;white-space:nowrap}
+.scard:hover .sgo,.scard:focus-visible .sgo{opacity:1}
+.sbig{font-size:30px;font-weight:680;letter-spacing:-.02em;line-height:1.1}
+.sbig small{font-size:16px;font-weight:600;margin-left:1px;color:var(--muted)}
+.sbig.muted{color:var(--unk-s)}
+.ssub{color:var(--muted);font-size:13px}
+.sbar{display:flex;height:6px;border-radius:99px;background:var(--track);overflow:hidden;margin:6px 0 4px}
+.sbar i{display:block;height:100%}
+.sstats{list-style:none;margin:2px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:3px 14px;font-size:12.5px;color:var(--muted)}
+.sstats li{display:flex;align-items:center;gap:7px}
+.sstats li i{width:8px;height:8px;border-radius:50%;background:var(--track);flex:none}
+.sstats li b{margin-left:auto;color:var(--ink);font-weight:650}
+.sfoot{margin-top:auto;padding-top:8px;font-size:12px;color:var(--muted);border-top:1px dashed var(--line)}
+/* coming metrics */
+.soonnote{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:14px;background:var(--brand-soft);color:var(--brand-ink);margin-bottom:14px}
+.soonnote b{display:block;font-size:14.5px}.soonnote span{font-size:13px;opacity:.9}
+.soonnote .sic{background:#fff}
+.skpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.skpi{padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card)}
+.skpi .l{font-size:13px;color:var(--muted);font-weight:600}.skpi .n{font-size:28px;font-weight:680;color:var(--unk-s);margin:2px 0}.skpi .d{font-size:12px;color:var(--muted)}
+.stable{padding:0 4px 4px}
+.str{display:grid;grid-template-columns:repeat(var(--cols,5),minmax(0,1fr));gap:12px;padding:12px 16px;border-top:1px solid var(--line);font-size:13px}
+.sth{font-size:11.5px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-top:0}
+.skl{display:block;height:10px;border-radius:6px;background:var(--track);width:70%}
+.str:nth-child(3) .skl{width:55%}.str:nth-child(4) .skl{width:62%}
+/* copilot tab */
+body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
+.cptab{display:flex;flex-direction:column;height:calc(100vh / .9 - 250px);min-height:460px;overflow:hidden}
+.cphead{display:flex;align-items:center;gap:12px;padding:14px 18px;background:linear-gradient(135deg,#0B6E6A,#13A39C);color:#fff}
+.cphead b{display:block;font-size:15px}.cphead span{font-size:12px;opacity:.85}
+.cphead .btn{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff}
+.cptab .av,.cphead .av{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;flex:none;background:rgba(255,255,255,.18)}
+.cptab .av svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.cpbd{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:12px;background:var(--bg)}
+.cpwl{max-width:620px;margin:auto;text-align:center}
+.cpwl h3{font-size:20px;font-weight:650}.cpwl p{color:var(--muted);margin:6px 0 16px}
+.cpsg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cpsg button{font:inherit;font-size:13.5px;text-align:left;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);cursor:pointer}
+.cpsg button:hover{border-color:var(--brand);color:var(--brand-ink)}
+.cpm{display:flex;gap:10px;max-width:820px}
+.cpm.u{align-self:flex-end}
+.cpm.u .bb{background:var(--brand);color:#fff;border-radius:16px 16px 4px 16px}
+.cpm.a .av{background:var(--brand-soft);color:var(--brand-ink);width:30px;height:30px;border-radius:9px}
+.cpm .bb{padding:10px 14px;border-radius:16px 16px 16px 4px;background:var(--card);border:1px solid var(--line);font-size:14px;line-height:1.55;min-width:0}
+.cpm.u .bb{border:0}
+.cpm.err .bb{background:var(--late-bg);border-color:transparent;color:var(--late)}
+.cpm .bb p{margin:0 0 6px}.cpm .bb p:last-child{margin:0}.cpm .bb ul,.cpm .bb ol{margin:4px 0 6px;padding-left:20px}
+.cpm .asof{font-size:11.5px;color:var(--muted);margin-top:6px}
+.ty{display:inline-flex;gap:4px}.ty i{width:7px;height:7px;border-radius:50%;background:var(--brand);opacity:.35;animation:tyb 1s infinite}
+.ty i:nth-child(2){animation-delay:.15s}.ty i:nth-child(3){animation-delay:.3s}
+@keyframes tyb{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.cpft{display:flex;gap:10px;padding:12px 14px;border-top:1px solid var(--line);background:var(--card)}
+.cpft textarea{flex:1;resize:none;font:inherit;font-size:14px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--panel);min-height:42px;max-height:120px}
+.cpft textarea:focus{outline:2px solid var(--brand);outline-offset:0;border-color:transparent}
+@media (max-width:760px){
+  .sgrid{grid-template-columns:1fr}
+  .scard{min-height:0}
+  .sgo{opacity:1}
+  .skpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stable{overflow-x:auto}.str{min-width:560px}
+  .cptab{height:calc(100vh - 210px);min-height:420px}
+  .cpsg{grid-template-columns:1fr}
+  .cpbd{padding:14px 12px}
+  .navitem .soon{display:none}
+}
+
 /* ---------- phones and small tablets ---------- */
 @media (max-width:1000px){.side{height:auto}.app{min-height:100vh}}
 @media (max-width:760px){
@@ -747,6 +846,7 @@ h3,.sect h3,.uphead h3{font-weight:650}
       <div class="panel note err hidden" id="errBox" role="alert"></div>
 
       <div id="slaView">
+        <div class="gbar hidden" id="groupBar" role="tablist" aria-label="Chat groups"></div>
         <div class="dnote hidden" id="remNote" role="status"></div>
         <section id="hero"></section>
         <div class="toolbar">
@@ -806,14 +906,14 @@ h3,.sect h3,.uphead h3{font-weight:650}
 </div>
 
 <script src="firebase-config.js"></script>
-<script src="demo.js"></script>
+<script src="demo.js?v=71"></script>
 <script>
 (function () {
   'use strict';
   var $ = function (s) { return document.querySelector(s); };
   var UI_VER = 36; // the server code version this page works with; otherwise the numbers are hidden
   var DIM_VER = 29; // version of the 1:1 / client feedback server code this page works with
-  var state = { msgs: {}, dir: '', stl: '', team: '', mcat: '', mteam: '', rem: null, tlclosed: {}, shownIds: [], openNow: {}, qt: null, sel: null, dopen: {}, tab: 'sla', month: '', dim: null, dq: '', dmodal: null, dnote: '', data: null, v6: false, view: 'init', filter: 'all', q: '', sort: 'new', open: {}, lopen: {}, modal: null, lastFocus: null, syncing: false };
+  var state = { msgs: {}, dir: '', stl: '', team: '', mcat: '', mteam: '', rem: null, tlclosed: {}, shownIds: [], openNow: {}, qt: null, sel: null, dopen: {}, tab: 'summary', month: '', dim: null, dq: '', dmodal: null, dnote: '', data: null, v6: false, view: 'init', filter: 'all', q: '', sort: 'new', open: {}, lopen: {}, modal: null, lastFocus: null, syncing: false };
 
   /* ---------- helpers ---------- */
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -929,8 +1029,15 @@ h3,.sect h3,.uphead h3{font-weight:650}
 
   var PAGES = {
     sla: ['Chat requests', 'Who has responded to the requests posted in Leads - Media'],
-    one: ['1:1 with agents', 'Monthly 1:1 meetings, recorded by the team lead above each person'],
-    client: ['Client feedback', 'Monthly client feedback. Visible only to the account owner, people with access and the admin'],
+    one: ['Internal monthly 1:1', 'Monthly 1:1 meetings, recorded by the team lead above each person'],
+    client: ['Client 1:1', 'Monthly client feedback calls. Visible only to the account owner, people with access and the admin'],
+    summary: ['Summary', 'Everything at a glance: open a card to see the details'],
+    ai: ['AI efficiency', 'How much work the teams do with AI, and the time it saves'],
+    util: ['Team utilization / billability', 'Logged, billable and bench hours for every team member'],
+    proj: ['Project-wise utilization', 'Planned against actual hours for every project and client'],
+    csat: ['CSAT', 'Client satisfaction survey scores, by account'],
+    esat: ['ESAT', 'Employee satisfaction survey scores, by team'],
+    copilot: ['Copilot', 'Ask questions about your requests, people, 1:1s and client feedback'],
     ops: ['Ops mailbox', 'Emails sent to the ops mailbox, read by AI: requests and issues are tracked until someone replies in the email']
   };
   function humanName(email) {
@@ -949,8 +1056,9 @@ h3,.sect h3,.uphead h3{font-weight:650}
       $('#slaView').classList.add('hidden'); $('#dimView').classList.add('hidden'); $('#refreshBtn').classList.add('hidden');
       return;
     }
-    var tabs = d.user.tabs || ['sla'];
+    var tabs = navTabs(d);
     if (tabs.indexOf(state.tab) === -1) state.tab = tabs[0];
+    try { document.body.classList.toggle('oncp', state.tab === 'copilot'); } catch (e) { /* optional */ }
     renderNav(tabs);
     $('#pageTitle').textContent = PAGES[state.tab][0];
     $('#pageSub').textContent = PAGES[state.tab][1];
@@ -971,6 +1079,9 @@ h3,.sect h3,.uphead h3{font-weight:650}
     }
     renderRemBtn();
     if (state.tab === 'sla') { renderSla(); }
+    else if (state.tab === 'summary') { eb.classList.add('hidden'); renderSummary(); }
+    else if (state.tab === 'copilot') { eb.classList.add('hidden'); renderCopilot(); }
+    else if (SOON[state.tab]) { eb.classList.add('hidden'); renderSoon(state.tab); }
     else if (state.tab === 'ops') { eb.classList.add('hidden'); loadOps(); }
     else { eb.classList.add('hidden'); loadDim(); }
   }
@@ -1599,33 +1710,161 @@ h3,.sect h3,.uphead h3{font-weight:650}
   function dpill(s) { return '<span class="pill ' + DCLS[s] + '"><span aria-hidden="true">' + DICO[s] + '</span>' + DLAB[s] + '</span>'; }
 
   var NAVICON = {
+    summary: '<svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>',
     sla: '<svg viewBox="0 0 24 24"><path d="M4 5.5h16v10.5H9.5L5 19.5V16H4z"/></svg>',
     one: '<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.2c2.4.2 4 1.7 4.5 4.3"/></svg>',
     client: '<svg viewBox="0 0 24 24"><rect x="3.5" y="7.5" width="17" height="12" rx="2.5"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3.5 13h17"/></svg>',
-    ops: '<svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>'
+    ai: '<svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>',
+    util: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></svg>',
+    proj: '<svg viewBox="0 0 24 24"><path d="M4 19.5V9M10 19.5V4.5M16 19.5v-7M21 19.5H3"/></svg>',
+    csat: '<svg viewBox="0 0 24 24"><path d="M12 4.5l2.3 4.7 5.2.8-3.8 3.6.9 5.1L12 16.3l-4.6 2.4.9-5.1-3.8-3.6 5.2-.8z"/></svg>',
+    esat: '<svg viewBox="0 0 24 24"><path d="M12 19.5s-7.5-4.4-7.5-9.6A4.1 4.1 0 0 1 12 7.6a4.1 4.1 0 0 1 7.5 2.3c0 5.2-7.5 9.6-7.5 9.6z"/></svg>',
+    ops: '<svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>',
+    copilot: '<svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 3.5V17A2.5 2.5 0 0 1 4 14.5z"/><path d="M12 7.3l.9 2.2 2.2.9-2.2.9-.9 2.2-.9-2.2-2.2-.9 2.2-.9z"/></svg>'
   };
+  var TABNAME = { summary: 'Summary', sla: 'Chat requests', one: 'Internal 1:1', client: 'Client 1:1', ai: 'AI efficiency', util: 'Team utilization', proj: 'Project utilization', csat: 'CSAT', esat: 'ESAT', ops: 'Ops mailbox', copilot: 'Copilot' };
+  /* every tab, in order: the ones the server allows this person (Chat requests, 1:1, client, ops mailbox) plus Summary, the coming metrics and Copilot */
+  function navTabs(d) {
+    var srv = (d && d.user && d.user.tabs) || ['sla'], out = ['summary'];
+    ['sla', 'one', 'client'].forEach(function (t) { if (srv.indexOf(t) !== -1) out.push(t); });
+    out = out.concat(['ai', 'util', 'proj', 'csat', 'esat']);
+    if (srv.indexOf('ops') !== -1) out.push('ops');
+    return out;
+  }
   function renderNav(tabs) {
-    var names = { sla: 'Chat requests', one: '1:1 with agents', client: 'Client feedback', ops: 'Ops mailbox' }, out = [];
-    var btn = function (t, label, gid) {
-      var sel = state.tab === t && (t !== 'sla' || !gid || state.group === gid);
-      return '<button class="navitem" role="tab" data-tab="' + t + '"' + (gid ? ' data-group="' + esc(gid) + '"' : '') + ' aria-selected="' + sel + '">' + NAVICON[t] + '<span>' + esc(label) + '</span></button>';
-    };
-    tabs.forEach(function (t) {
-      if (t === 'sla' && state.groups && state.groups.length) {
-        // "Chat requests" is the parent; each chat group is listed under it (click the parent to fold or unfold the list)
-        var open = state.navOpen !== false;
-        out.push('<button class="navitem navparent" type="button" data-navfold="1" aria-expanded="' + open + '"' + (state.tab === 'sla' ? ' data-active="1"' : '') + '>' + NAVICON.sla +
-          '<span>' + names.sla + '</span><svg class="navchev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4"/></svg></button>');
-        var subs = (realGroups().length > 1 ? [{ id: '_all', name: 'All chat groups' }] : []).concat(state.groups);
-        if (open) out.push('<div class="navsubs" role="group" aria-label="Chat groups">' + subs.map(function (g) {
-          var sel = state.tab === 'sla' && state.group === g.id;
-          return '<button class="navitem navsub" role="tab" data-tab="sla" data-group="' + esc(g.id) + '" aria-selected="' + sel + '"><span class="navdot" aria-hidden="true"></span><span>' + esc(g.name) + '</span></button>';
-        }).join('') + '</div>');
-      }
-      else out.push(btn(t, names[t], ''));
+    $('#navTabs').innerHTML = tabs.map(function (t) {
+      return '<button class="navitem" role="tab" data-tab="' + t + '" aria-selected="' + (state.tab === t) + '">' + NAVICON[t] + '<span>' + esc(TABNAME[t] || t) +
+        (SOON[t] ? '<em class="soon">soon</em>' : '') + '</span></button>';
+    }).join('');
+    // the chat groups: a row of pills above the requests (instead of a list under the tab)
+    var gb = $('#groupBar'), subs = (state.groups && state.groups.length > 1) ? (realGroups().length > 1 ? [{ id: '_all', name: 'All chat groups' }] : []).concat(state.groups) : [];
+    gb.classList.toggle('hidden', !(state.tab === 'sla' && subs.length));
+    gb.innerHTML = subs.map(function (g) { return '<button type="button" role="tab" data-tab="sla" data-group="' + esc(g.id) + '" aria-selected="' + (state.group === g.id) + '">' + esc(g.name) + '</button>'; }).join('');
+    $('#brandSub').textContent = state.tab === 'sla' ? (groupName() || 'Chat requests') : ((PAGES[state.tab] || [''])[0]);
+  }
+
+  /* ---------- Summary: one card per area ---------- */
+  function sumCard(t, body, foot) {
+    return '<button type="button" class="scard" data-tab="' + t + '"><div class="schead"><span class="sic">' + NAVICON[t] + '</span><b>' + esc((PAGES[t] || [TABNAME[t]])[0]) + '</b>' +
+      (SOON[t] ? '<em class="soon">soon</em>' : '') + '<span class="sgo" aria-hidden="true">Open →</span></div>' + body + (foot ? '<div class="sfoot">' + foot + '</div>' : '') + '</button>';
+  }
+  function sumBar(parts, total) {
+    total = total || 1;
+    return '<div class="sbar">' + parts.map(function (p) { return p[1] ? '<i style="width:' + (100 * p[1] / total).toFixed(2) + '%;background:var(' + p[0] + ')"></i>' : ''; }).join('') + '</div>';
+  }
+  function sumStats(list) { return '<ul class="sstats">' + list.map(function (x) { return '<li><i style="background:var(' + x[0] + ')"></i>' + esc(x[1]) + '<b>' + x[2] + '</b></li>'; }).join('') + '</ul>'; }
+  function sumDimBody(kind) {
+    var x = (state.sumDim || {})[kind];
+    if (!x) return '<div class="sbig muted">…</div><div class="ssub">Loading…</div>';
+    if (x.err) return '<div class="sbig muted">—</div><div class="ssub">' + esc(x.err) + '</div>';
+    var t = x.totals || {}, n = t.total || 0;
+    if (!n) return '<div class="sbig muted">—</div><div class="ssub">No ' + (kind === 'oneonone' ? '1:1s' : 'client calls') + ' to track in ' + esc(x.monthLabel || 'this month') + '</div>';
+    return '<div class="sbig">' + Math.round(100 * (t.completed || 0) / n) + '<small>%</small></div><div class="ssub">' + (t.completed || 0) + ' of ' + n + ' done · ' + esc(x.monthLabel || '') + '</div>' +
+      sumBar([['--done-s', t.completed], ['--wait-s', t.due], ['--late-s', t.overdue], ['--unk-s', t.notVerified]], n) +
+      sumStats([['--done-s', 'Done', t.completed || 0], ['--wait-s', 'Due', t.due || 0], ['--late-s', 'Late', t.overdue || 0], ['--unk-s', 'Needs proof', t.notVerified || 0]]);
+  }
+  function loadSumDim(kind) {
+    state.sumDim = state.sumDim || {};
+    if (state.sumDim[kind] && !state.sumDim[kind].err) return;
+    server('getDimensionData', [kind, '', ''], function (d) {
+      state.sumDim[kind] = d.dimVersion !== DIM_VER ? { err: 'Update Dimensions.gs in Apps Script to see this.' } : { totals: d.totals, monthLabel: d.monthLabel };
+      if (state.tab === 'summary') renderSummary();
+    }, function (m) { state.sumDim[kind] = { err: m }; if (state.tab === 'summary') renderSummary(); });
+  }
+  function renderSummary() {
+    var d = state.raw || state.data, tabs = navTabs(d), cards = [];
+    if (tabs.indexOf('sla') !== -1) {
+      var a = []; (d.initiatives || []).forEach(function (i) { (i.leads || []).forEach(function (l) { a.push(l); }); });
+      var c = tally(a), pct = c.total ? Math.round(100 * c.done / c.total) : 0;
+      cards.push(sumCard('sla', c.total
+        ? '<div class="sbig">' + pct + '<small>%</small></div><div class="ssub">' + c.done + ' of ' + c.total + ' responses done · ' + (d.initiatives || []).length + ' requests</div>' +
+          sumBar([['--done-s', c.done], ['--prog-s', c.prog], ['--wait-s', c.wait], ['--late-s', c.late], ['--unk-s', c.unk]], c.total) +
+          sumStats([['--done-s', 'Done', c.done], ['--wait-s', 'Waiting', c.wait + c.prog], ['--late-s', 'Late', c.late], ['--unk-s', "Can't check", c.unk]])
+        : '<div class="sbig muted">—</div><div class="ssub">No requests to track yet</div>',
+        d.lastSync ? 'Updated ' + esc(fmt(d.lastSync)) : ''));
+    }
+    if (tabs.indexOf('one') !== -1) { loadSumDim('oneonone'); cards.push(sumCard('one', sumDimBody('oneonone'), 'Recorded by the team leads')); }
+    if (tabs.indexOf('client') !== -1) { loadSumDim('client'); cards.push(sumCard('client', sumDimBody('client'), 'Your accounts only')); }
+    ['ai', 'util', 'proj', 'csat', 'esat'].forEach(function (t) {
+      cards.push(sumCard(t, '<div class="sbig muted">—</div><div class="ssub">No data available</div>' + sumBar([], 1) +
+        '<ul class="sstats">' + SOON[t].kpis.slice(0, 2).map(function (k) { return '<li><i></i>' + esc(k[0]) + '<b>—</b></li>'; }).join('') + '</ul>', 'Connects to Google Cloud when access is ready'));
     });
-    $('#navTabs').innerHTML = out.join('');
-    $('#brandSub').textContent = state.tab === 'sla' ? (groupName() || 'Chat requests') : (names[state.tab] || '');
+    if (tabs.indexOf('ops') !== -1) cards.push(sumCard('ops', '<div class="ssub" style="margin-top:6px">Emails sent to the ops mailbox, read by AI. Requests and issues are tracked until someone replies.</div>', ''));
+    var hi = 'Hi ' + esc(meName().split(' ')[0]);
+    $('#dimView').innerHTML = '<div class="sumhead"><div><div class="kicker">' + esc(new Date().toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })) + '</div><h2>' + hi + ', here is where things stand</h2></div></div>' +
+      '<div class="sgrid">' + cards.join('') + '</div>';
+  }
+
+  /* ---------- the coming metrics: the page is ready, the data comes from Google Cloud (Keka) later ---------- */
+  var SOON = {
+    ai: { kpis: [['AI adoption', '% of the team using AI'], ['Hours saved', 'this month'], ['Use cases', 'live'], ['Teams reporting', 'of all teams']], cols: ['Team', 'Team lead', 'AI use cases', 'Hours saved', 'Efficiency %'] },
+    util: { kpis: [['Utilization', 'logged ÷ available hours'], ['Billability', 'billable ÷ logged hours'], ['Billable hours', 'this month'], ['Bench hours', 'not on a project']], cols: ['Person', 'Team', 'Logged hours', 'Billable hours', 'Utilization %', 'Billable %'] },
+    proj: { kpis: [['Projects', 'active'], ['Avg utilization', 'across projects'], ['Over-allocated', 'above 100%'], ['Under-allocated', 'below 70%']], cols: ['Project / client', 'Team size', 'Planned hours', 'Actual hours', 'Utilization %'] },
+    csat: { kpis: [['CSAT score', 'average, out of 5'], ['Responses', 'this quarter'], ['Happy clients', 'score 4 or 5'], ['Low scores', 'need a follow-up']], cols: ['Client', 'Account owner', 'Last survey', 'Score', 'Comment'] },
+    esat: { kpis: [['ESAT score', 'average, out of 5'], ['Participation', '% of the team answered'], ['Responses', 'this quarter'], ['Low scores', 'need a 1:1']], cols: ['Team', 'Team lead', 'Responses', 'Score', 'Trend'] }
+  };
+  function renderSoon(t) {
+    var s = SOON[t];
+    $('#dimView').innerHTML =
+      '<div class="soonnote"><span class="sic">' + NAVICON[t] + '</span><div><b>No data available yet</b><span>This page is ready. Its numbers will come from Google Cloud (Keka) once access is set up, and each team lead will see only their own team.</span></div></div>' +
+      '<div class="skpis">' + s.kpis.map(function (k) { return '<div class="skpi"><div class="l">' + esc(k[0]) + '</div><div class="n">—</div><div class="d">' + esc(k[1]) + '</div></div>'; }).join('') + '</div>' +
+      '<div class="panel reqs"><div class="phead"><h3>' + esc(PAGES[t][0]) + ' by ' + esc(s.cols[0].toLowerCase()) + '</h3><span class="hint">Shown here once the data is connected</span></div>' +
+      '<div class="stable" role="table"><div class="str sth" role="row">' + s.cols.map(function (c) { return '<span role="columnheader">' + esc(c) + '</span>'; }).join('') + '</div>' +
+      [0, 1, 2].map(function () { return '<div class="str" role="row" aria-hidden="true">' + s.cols.map(function () { return '<span><i class="skl"></i></span>'; }).join('') + '</div>'; }).join('') +
+      '<div class="empty">No data available</div></div></div>';
+    $('#dimView').style.setProperty('--cols', s.cols.length);
+  }
+
+  /* ---------- Copilot as a tab ---------- */
+  var CPT = { msgs: [], busy: false, slow: false };
+  try { CPT.msgs = JSON.parse(sessionStorage.getItem('cpTab') || '[]') || []; } catch (e) { CPT.msgs = []; }
+  var CPT_SUGGEST = [['Who has not responded yet?', 'Who has not responded to the latest request yet?'], ['Which requests are late?', 'Which requests are late, and who has not responded to each?'],
+    ['Open issues', 'Which issues are still waiting for a reply?'], ['1:1s still pending', 'Which 1:1s and client feedback calls are still pending this month?']];
+  function cpMd(t) {
+    var lines = esc(t).split(/\n/), out = '', list = '';
+    var inline = function (x) { return x.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>'); };
+    var close = function () { if (list) { out += '</' + list + '>'; list = ''; } };
+    lines.forEach(function (l) {
+      var b = /^\s*[-*•]\s+(.*)$/.exec(l), n = /^\s*\d+[.)]\s+(.*)$/.exec(l);
+      if (b || n) { var k = b ? 'ul' : 'ol'; if (list !== k) { close(); out += '<' + k + '>'; list = k; } out += '<li>' + inline((b || n)[1]) + '</li>'; return; }
+      close(); if (l.trim()) out += '<p>' + inline(l) + '</p>';
+    });
+    close(); return out;
+  }
+  function renderCopilot() {
+    var box = $('#dimView'), h = '';
+    if (!CPT.msgs.length) h = '<div class="cpwl"><h3>Hi ' + esc(meName().split(' ')[0]) + ', how can I help?</h3><p>Ask anything about your chat requests, who has responded, issues, 1:1s or client feedback. I only use what you can see on this dashboard.</p>' +
+      '<div class="cpsg">' + CPT_SUGGEST.map(function (x, i) { return '<button type="button" data-cpt="' + i + '">' + esc(x[0]) + '</button>'; }).join('') + '</div></div>';
+    CPT.msgs.forEach(function (m) {
+      h += m.role === 'user' ? '<div class="cpm u"><div class="bb">' + esc(m.text) + '</div></div>'
+        : '<div class="cpm a' + (m.error ? ' err' : '') + '"><span class="av">' + NAVICON.ai + '</span><div class="bb">' + cpMd(m.text) + (m.asOf ? '<div class="asof">Data as of ' + esc(m.asOf) + '</div>' : '') + '</div></div>';
+    });
+    if (CPT.busy) h += '<div class="cpm a"><span class="av">' + NAVICON.ai + '</span><div class="bb"><span class="ty"><i></i><i></i><i></i></span>' + (CPT.slow ? '<div class="asof">Reading your latest data… this can take up to a minute.</div>' : '') + '</div></div>';
+    var keep = box.querySelector('#cptText'), val = keep ? keep.value : '';
+    box.innerHTML = '<div class="panel cptab"><div class="cphead"><span class="av">' + NAVICON.ai + '</span><div><b>Copilot</b><span>Answers only from what you can see · questions are logged</span></div><span style="flex:1"></span>' +
+      '<button class="btn sm" type="button" data-cptnew="1">New chat</button></div><div class="cpbd" id="cptBody" aria-live="polite">' + h + '</div>' +
+      '<div class="cpft"><textarea id="cptText" rows="1" placeholder="Ask about requests, people, issues, 1:1s…" aria-label="Ask Copilot"></textarea><button class="btn primary" type="button" id="cptSend"' + (CPT.busy ? ' disabled' : '') + '>Ask</button></div></div>';
+    var ta = $('#cptText'); ta.value = val;
+    var bd = $('#cptBody'); bd.scrollTop = bd.scrollHeight;
+    ta.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); cptAsk(ta.value); } });
+    $('#cptSend').onclick = function () { cptAsk(ta.value); };
+    box.querySelectorAll('[data-cpt]').forEach(function (b) { b.onclick = function () { cptAsk(CPT_SUGGEST[Number(b.dataset.cpt)][1]); }; });
+    box.querySelector('[data-cptnew]').onclick = function () { CPT.msgs = []; cptSave(); renderCopilot(); };
+    if (!CPT.busy) ta.focus();
+  }
+  function cptSave() { try { sessionStorage.setItem('cpTab', JSON.stringify(CPT.msgs.slice(-30))); } catch (e) { /* optional */ } }
+  function cptAsk(q) {
+    q = String(q || '').trim(); if (!q || CPT.busy) return;
+    var hist = CPT.msgs.filter(function (m) { return !m.error; }).slice(-10).map(function (m) { return { role: m.role, text: m.text }; });
+    CPT.msgs.push({ role: 'user', text: q }); CPT.busy = true; CPT.slow = false; cptSave();
+    var t = $('#cptText'); if (t) t.value = '';
+    if (state.tab === 'copilot') renderCopilot();
+    var slowT = setTimeout(function () { CPT.slow = true; if (CPT.busy && state.tab === 'copilot') renderCopilot(); }, 6000);
+    var done = function (m) { clearTimeout(slowT); CPT.busy = false; CPT.slow = false; CPT.msgs.push(m); cptSave(); if (state.tab === 'copilot') renderCopilot(); };
+    server('copilotAsk', [q, hist], function (j) {
+      j = j || {};
+      done(j.ok ? { role: 'assistant', text: j.answer, asOf: j.asOf } : { role: 'assistant', text: j.error || 'Copilot could not answer.', error: true });
+    }, function (m) { done({ role: 'assistant', text: /copilotAsk/.test(m) ? 'Copilot is not installed yet: add Copilot.gs in Apps Script.' : m, error: true }); });
   }
 
   /* ---------- Ops mailbox: emails sent to the ops mailbox, read by AI ---------- */
@@ -2413,7 +2652,7 @@ h3,.sect h3,.uphead h3{font-weight:650}
     if (!e.target.closest('[data-navfold]')) return;
     state.navOpen = state.navOpen === false;
     try { localStorage.setItem('navOpen', state.navOpen ? '1' : '0'); } catch (e2) { /* optional */ }
-    renderNav((state.data && state.data.user && state.data.user.tabs) || ['sla', 'one', 'client']);
+    if (state.data) renderNav(navTabs(state.data));
   });
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-tab],[data-dedit],[data-dpanel],[data-dadd],[data-dmember],[data-dmap],[data-dacc],[data-dgroup],[data-ofilter],[data-oopen],[data-viewas],[data-dscope],[data-dtile],[data-dupall],[data-dcore],[data-ct],[data-fp],[data-dfind],[data-dclean],[data-own],[data-ac],[data-mail],[data-crem],[data-cacc],[data-aa]'); if (!t) return;
@@ -2497,7 +2736,7 @@ h3,.sect h3,.uphead h3{font-weight:650}
   $('#dSave').addEventListener('click', saveDim);
   $('#dscrim').addEventListener('click', function (e) { if (e.target.id === 'dscrim') closeDim(); });
 
-  load(function () { if (state.data && state.data.codeVersion === UI_VER && state.tab === 'sla' && state.data.user.tabs.indexOf('sla') !== -1) autoSync(false); });
+  load(function () { if (state.data && state.data.codeVersion === UI_VER && state.data.user.tabs.indexOf('sla') !== -1) autoSync(false); });
   setInterval(function () { if (!state.modal && !state.dmodal && !state.syncing) load(); }, 5 * 60 * 1000);
 })();
 </script>

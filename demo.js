@@ -143,7 +143,7 @@
     'addChatAccess', 'setChatGroupAudience', 'getVisitors', 'getMappingCheck', 'getAccountsCheck', 'getAccountAccess', 'addAccountAccess', 'removeAccountAccess',
     'findPerson', 'addTeamMember', 'addRosterRows', 'setOwnerMode', 'getMailInfo', 'assignMail', 'ignoreMail', 'cleanupClientLog', 'reminderBulkPlan',
     'reminderBulkPreview', 'reminderDraft', 'getGroupMembers', 'setRemindersEnabled'];
-  var LIVE_ONLY = { sendReminder: 'Reminders are not sent from the demo.', sendReminderBulk: 'Reminders are not sent from the demo.', sendTestMessage: 'Messages are not sent from the demo.',
+  var LIVE_ONLY = { copilotAsk: 'Copilot reads live data, so it answers on the live site (live.html), not in the demo.', sendReminder: 'Reminders are not sent from the demo.', sendReminderBulk: 'Reminders are not sent from the demo.', sendTestMessage: 'Messages are not sent from the demo.',
     checkMailNow: 'The demo has no mailbox to read.', checkChatMember: 'The demo cannot ask Google Chat.', addChatGroup: 'Chat groups are added in the live version.', getOpsMail: 'Not part of the demo.' };
   var OVERRIDES = '\n;chatMembershipIn_ = function (spaceId, email) { var rows = readTable_("Group_Members"); return { answer: rows.some(function (r) { return String(r.SpaceId) === String(spaceId) && String(r.Email).toLowerCase() === String(email).toLowerCase(); }) ? "yes" : "no", why: "" }; };' +
     '\nmembersListHasIn_ = function () { return false; };' +
@@ -296,10 +296,33 @@
     });
   }
 
+  /**
+   * Sign-in. With GOOGLE_CLIENT_ID set (firebase-config.js): Google's own "Sign in with Google" button gives a Google ID token, and
+   * Firebase signs in with it (no popup to the firebaseapp.com page). Without it: the Firebase popup.
+   */
+  var gsiLoaded = null;
+  function loadGsi() {
+    if (!gsiLoaded) gsiLoaded = new Promise(function (ok, bad) { var s = document.createElement('script'); s.src = 'https://accounts.google.com/gsi/client'; s.onload = ok; s.onerror = function () { bad(new Error('Could not load Google sign-in.')); }; document.head.appendChild(s); });
+    return gsiLoaded;
+  }
   function showSignIn(err) {
     whenBody(function () {
+      var cid = String(window.GOOGLE_CLIENT_ID || '').trim();
       overlay('<h2>Lead SLA Monitor</h2><p>Demo with sample data. Sign in with your ' + esc(DOMAIN) + ' Google account.</p>' +
-        (err ? '<p class="err">' + esc(err) + '</p>' : '') + '<button id="dmSignIn">Sign in with Google</button>');
+        (err ? '<p class="err">' + esc(err) + '</p>' : '') + (cid ? '<div id="dmGsi" style="margin-top:14px;min-height:44px"></div>' : '<button id="dmSignIn">Sign in with Google</button>'));
+      if (cid) {
+        loadGsi().then(function () {
+          window.google.accounts.id.initialize({
+            client_id: cid, hd: DOMAIN, ux_mode: 'popup', auto_select: false,
+            callback: function (r) {
+              var cred = fb.au.GoogleAuthProvider.credential(r.credential);
+              fb.au.signInWithCredential(auth, cred).catch(function (e) { showSignIn(e.message); });
+            }
+          });
+          window.google.accounts.id.renderButton(document.getElementById('dmGsi'), { theme: 'filled_blue', size: 'large', text: 'signin_with', shape: 'pill' });
+        }).catch(function (e) { showSignIn(e.message); });
+        return;
+      }
       document.getElementById('dmSignIn').onclick = function () {
         var p = new fb.au.GoogleAuthProvider();
         p.setCustomParameters({ hd: DOMAIN, prompt: 'select_account' });
@@ -383,7 +406,7 @@
     document.getElementById('dmAs').onchange = function (e) { try { sessionStorage.setItem('demoAs', e.target.value); } catch (x) { /* ok */ } location.reload(); };
     document.getElementById('dmHide').onclick = function () { el.remove(); };
     if (fb.local) { document.getElementById('dmReset').remove(); document.getElementById('dmOut2').remove(); }
-    else document.getElementById('dmOut2').onclick = function () { fb.au.signOut(auth).then(function () { location.reload(); }); };
+    else document.getElementById('dmOut2').onclick = function () { try { window.google.accounts.id.disableAutoSelect(); } catch (e) { /* not loaded */ } fb.au.signOut(auth).then(function () { location.reload(); }); };
     if (!fb.local) document.getElementById('dmReset').onclick = function () { showSetup('This replaces the sample data and the dashboard code in Firestore.'); var o = document.getElementById('dmOverlay'); o.querySelector('.card').insertAdjacentHTML('beforeend', '<button class="sec" id="dmCancel">Cancel</button>'); document.getElementById('dmCancel').onclick = function () { overlay(null); }; };
   }
 

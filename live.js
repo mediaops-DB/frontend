@@ -186,7 +186,7 @@
   function cpCss() {
     var c = document.createElement('style');
     c.textContent =
-      '#cpLaunch{position:fixed;right:20px;bottom:20px;z-index:9998;display:flex;align-items:center;gap:10px;height:52px;padding:0 20px 0 14px;border:0;border-radius:999px;background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;font:600 14.5px/1 Inter,"Segoe UI",system-ui,sans-serif;box-shadow:0 12px 30px rgba(15,118,110,.35),0 2px 6px rgba(15,118,110,.25);cursor:pointer;transition:transform .15s,box-shadow .15s}' +
+      'body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}#cpLaunch{position:fixed;right:20px;bottom:20px;z-index:9998;display:flex;align-items:center;gap:10px;height:52px;padding:0 20px 0 14px;border:0;border-radius:999px;background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;font:600 14.5px/1 Inter,"Segoe UI",system-ui,sans-serif;box-shadow:0 12px 30px rgba(15,118,110,.35),0 2px 6px rgba(15,118,110,.25);cursor:pointer;transition:transform .15s,box-shadow .15s}' +
       '#cpLaunch:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(15,118,110,.42)}' +
       '#cpLaunch .ic{width:30px;height:30px;border-radius:999px;background:rgba(255,255,255,.18);display:grid;place-items:center}#cpLaunch svg{width:17px;height:17px}' +
       '#cpLaunch.hide{opacity:0;pointer-events:none;transform:translateY(8px)}' +
@@ -268,6 +268,17 @@
       }, function (e) { clearTimeout(t); bad(e); });
     });
   }
+  async function cpQuery(q, history) {   // the fast route (the Copilot web address), else through Firestore
+    var j = null;
+    try {
+      if (CP_URL && !CP.viaStore) {
+        var tok = await auth.currentUser.getIdToken();
+        var r = await fetch(CP_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ idToken: tok, question: q, history: history }) });
+        j = await r.json();
+      }
+    } catch (e) { j = null; CP.viaStore = true; }
+    return j || cpViaStore(q, history);
+  }
   async function cpAsk(q) {
     q = String(q || '').trim();
     if (!q || CP.busy) return;
@@ -338,6 +349,7 @@
   function call(fn, args) {
     return ready.then(function () {
       if (fn === 'syncIfStale') return { status: 'fresh', complete: true };   // the 30-minute refresh runs in Apps Script
+      if (fn === 'copilotAsk') return cpQuery(String(args[0] || ''), args[1] || []);   // the Copilot tab
       if (READS.indexOf(fn) !== -1) { var r = stored(fn, args); return r ? answer(r) : ask(fn, args); }
       if (WRITES.indexOf(fn) !== -1) return act(fn, args);
       throw new Error('Not available on the website yet: ' + fn);
