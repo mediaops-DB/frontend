@@ -8,3 +8,5 @@ window.FIREBASE_CONFIG = {
   appId: '1:999364364821:web:f87a3d063b9c8351ba1c1c'
 };
 window.ALLOWED_DOMAIN = 'databeat.io';   // only Google accounts of this company can sign in
+
+window.COPILOT_URL = 'https://script.google.com/a/macros/databeat.io/s/AKfycbzoV0wfGlC2nwMaxtPD9NlvBrCijJo60LVRBLlNqV2u34c2gyyXFzm5Jl23yiy88aOQ/exec';
