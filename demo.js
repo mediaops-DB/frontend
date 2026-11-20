@@ -1,5 +1,5 @@
 /*
- * Lead SLA Monitor: DEMO website (GitHub Pages + Firebase).
+ * Leads Intelligence Suite: DEMO website (GitHub Pages + Firebase).
  *
  *   - Sign-in: Firebase Authentication with Google. Only accounts of ALLOWED_DOMAIN get in (the Firestore rules enforce the same).
  *   - Database: Firestore. Every tab of the old sheet is one document in the collection "tabs" (headers + rows), so you can read and
@@ -308,7 +308,7 @@
   function showSignIn(err) {
     whenBody(function () {
       var cid = String(window.GOOGLE_CLIENT_ID || '').trim();
-      overlay('<h2>Lead SLA Monitor</h2><p>Demo with sample data. Sign in with your ' + esc(DOMAIN) + ' Google account.</p>' +
+      overlay('<h2>Leads Intelligence Suite</h2><p>Demo with sample data. Sign in with your ' + esc(DOMAIN) + ' Google account.</p>' +
         (err ? '<p class="err">' + esc(err) + '</p>' : '') + (cid ? '<div id="dmGsi" style="margin-top:14px;min-height:44px"></div>' : '<button id="dmSignIn">Sign in with Google</button>'));
       if (cid) {
         loadGsi().then(function () {

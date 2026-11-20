@@ -1,5 +1,5 @@
 /*
- * Lead SLA Monitor: LIVE website (GitHub Pages + Firestore). The real data, prepared by Apps Script (FirestoreSync.gs).
+ * Leads Intelligence Suite: LIVE website (GitHub Pages + Firestore). The real data, prepared by Apps Script (FirestoreSync.gs).
  *
  *   - Sign-in: Firebase Authentication with Google, company accounts only.
  *   - Reading: the page reads ONLY views/<your email>/calls/... (the Firestore rules refuse anything else). Apps Script writes your
@@ -136,7 +136,7 @@
   }
   function signIn(err) {
     whenBody(function () {
-      overlay('<h2>Lead SLA Monitor</h2><p>Sign in with your ' + esc(DOMAIN) + ' Google account.</p>' + (err ? '<p class="err">' + esc(err) + '</p>' : '') + '<button id="lvSignIn">Sign in with Google</button>');
+      overlay('<h2>Leads Intelligence Suite</h2><p>Sign in with your ' + esc(DOMAIN) + ' Google account.</p>' + (err ? '<p class="err">' + esc(err) + '</p>' : '') + '<button id="lvSignIn">Sign in with Google</button>');
       document.getElementById('lvSignIn').onclick = function () {
         var p = new fb.au.GoogleAuthProvider();
         p.setCustomParameters({ hd: DOMAIN, prompt: 'select_account' });
@@ -320,7 +320,7 @@
       var box = document.createElement('section');
       box.id = 'cpBox'; box.setAttribute('aria-label', 'Copilot'); box.setAttribute('role', 'dialog');
       box.innerHTML =
-        '<div class="hd"><span class="av">' + SPARK + '</span><div class="tt"><b>Copilot</b><span><i></i>Lead SLA Monitor assistant</span></div>' +
+        '<div class="hd"><span class="av">' + SPARK + '</span><div class="tt"><b>Copilot</b><span><i></i>Leads Intelligence Suite assistant</span></div>' +
         '<button class="hb" type="button" data-cpnew="1" aria-label="New conversation" title="New conversation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>' +
         '<button class="hb" type="button" data-cpclose="1" aria-label="Close Copilot" title="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>' +
         '<div class="bd" aria-live="polite"></div>' +
