@@ -3,7 +3,7 @@
 <head>
 <base target="_top">
 <meta charset="utf-8">
-<!-- UI_VERSION=74 -->
+<!-- UI_VERSION=75 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lead SLA Monitor</title>
 <style>
@@ -958,6 +958,32 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
 .road button em{font-style:normal;font-size:12px;color:var(--brand-ink);background:var(--brand-soft);padding:1px 7px;border-radius:999px;margin-left:4px}
 @media (max-width:1100px){.sgrid2{grid-template-columns:1fr}}
 @media (max-width:760px){.samplebar{align-items:flex-start}.sctl .select,.sctl .search{flex:1 1 100%}.stab{min-width:640px}.hbr,.par,.funr{grid-template-columns:90px minmax(0,1fr) auto}}
+
+/* ---------- v75: AI efficiency page ---------- */
+.aisec{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 2px rgba(20,30,50,.05)}
+.aihd{display:flex;align-items:center;gap:10px;margin:-2px 0 10px;padding-left:10px;border-left:3px solid var(--brand)}
+.aihd h3{font-size:16px;font-weight:650}
+.aishow{font-size:12.5px;color:var(--muted);margin-bottom:12px}.aishow b{color:var(--ink);font-weight:600}
+.aiks{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.aiks.three{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:12px}
+.aik{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--panel)}
+.aik .l{font-size:11px;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.aik .n{font-size:24px;font-weight:700;margin:4px 0 2px;letter-spacing:-.01em}
+.aik.good .n{color:var(--done)}
+.aik .d{font-size:11.5px;color:var(--muted)}
+.aiview{display:flex;align-items:center;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.aiview button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;font:inherit;font-size:13px;font-weight:600;color:var(--sbtx);cursor:pointer}
+.aiview button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.stab td.sv{color:var(--done);font-weight:700}.stab td.sv.z{color:var(--muted);font-weight:500}.stab td.sp{color:var(--done)}
+.stab td.accl{font-size:12.5px;line-height:1.5;color:var(--sbtx)}
+.flab{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);font-weight:600}
+.agrow{cursor:pointer}.agrow .chev{color:var(--muted);display:inline-block;width:12px}
+.agx td{background:var(--panel);padding:6px 14px 10px 34px}
+.agx ul{list-style:none;margin:0;padding:0}
+.agx li{display:grid;grid-template-columns:minmax(0,1.3fr) 110px 130px 1fr;gap:10px;align-items:center;padding:6px 0;border-top:1px dashed var(--line);font-size:13px}
+.agx li:first-child{border-top:0}.agx li span:not(.spill){color:var(--muted)}.agx li em{font-style:normal;color:var(--muted);font-size:12.5px}
+@media (max-width:1200px){.aiks{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.aiks,.aiks.three{grid-template-columns:repeat(2,minmax(0,1fr))}.agx li{grid-template-columns:1fr auto}.agx li span:not(.spill),.agx li em{display:none}}
 </style>
 </head>
 <body>
@@ -1048,7 +1074,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
 </div>
 
 <script src="firebase-config.js"></script>
-<script src="live.js?v=74"></script>
+<script src="live.js?v=75"></script>
 <script>
 (function () {
   'use strict';
@@ -2210,6 +2236,119 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     return { html: '<div class="samplebar"><span class="sbadge">SAMPLE DATA</span><span>Names are your real teams and accounts; <b>every number here is made up</b> to show how this page works. Real numbers will come from Google Cloud.</span></div>' +
       ctl + '<div class="skpis">' + kp.join('') + '</div>' + chart + table, rows: all };
   }
+  /* ---------- AI efficiency (sample): Overall, AI Savings by account / by person / no AI, AI Agents ---------- */
+  var AGENTS = [['Pacing alert bot', 'Ad Ops'], ['Campaign QA checker', 'Ad Ops'], ['Report summariser', 'Reporting'], ['Ticket triage agent', 'Ad Ops'], ['Naming convention validator', 'Ad Ops'],
+    ['Discrepancy finder', 'Billing'], ['Invoice match helper', 'Billing'], ['Creative spec checker', 'Creative'], ['Insights narrator', 'Analytics'], ['Audience overlap explorer', 'Analytics'], ['Client email drafter', 'Reporting']];
+  function aiWeeks() {
+    var out = [], d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() - ((d.getDay() + 6) % 7));   // this Monday
+    for (var i = 7; i >= 0; i--) { var w = new Date(d.getTime() - i * 7 * 864e5); out.push({ id: w.toISOString().substring(0, 10), label: 'Week of ' + w.toLocaleDateString([], { day: 'numeric', month: 'short' }) }); }
+    return out;
+  }
+  function aiModel() {
+    var org = sampleOrg(), pool = [], byTl = {};
+    org.teams.forEach(function (tm) { byTl[tm.tl] = tm.members.map(function (m) { return m.name; }); tm.members.forEach(function (m) { if (pool.indexOf(m.name) === -1) pool.push(m.name); }); });
+    if (!pool.length) pool = org.teams.map(function (tm) { return tm.tl; });
+    var accounts = org.accounts.map(function (a, ai) {
+      var mine = (byTl[a.owner] || []).slice(), n = Math.round(sr(a.name + 'n', 3, 7)), people = [];
+      for (var i = 0; people.length < n && i < 40; i++) {
+        var src = mine.length && i < mine.length * 2 ? mine : pool, p = src[Math.floor(srand(a.name + 'p' + i) * src.length)];
+        if (p && people.indexOf(p) === -1) people.push(p);
+      }
+      var on = srand(a.name + 'on') > 0.34;
+      var agents = [], na = on ? Math.round(sr(a.name + 'ag', 0, 4)) : (srand(a.name + 'dev') > 0.6 ? 1 : 0);
+      for (var j = 0; j < na; j++) {
+        var ag = AGENTS[(Math.floor(srand(a.name + 'a' + j) * AGENTS.length) + j) % AGENTS.length], st = on ? pick(a.name + 's' + j, ['Live', 'Live', 'Live', 'Testing', 'In development']) : 'In development';
+        agents.push({ name: ag[0], vertical: ag[1], status: st, users: st === 'Live' ? Math.max(1, Math.round(people.length * sr(a.name + 'u' + j, 0.4, 1))) : 0 });
+      }
+      return { name: a.name, owner: a.owner, people: people, on: on, agents: agents };
+    });
+    return { accounts: accounts };
+  }
+  function aiNumbers(model, weeks) {   // per account and person: manual and AI hours over the chosen weeks
+    var rows = [];
+    model.accounts.forEach(function (a) {
+      a.people.forEach(function (p) {
+        var uses = a.on && srand(p + a.name + 'use') > 0.12, man = 0, ai = 0;
+        if (uses) weeks.forEach(function (w) { var m = sr(p + a.name + w + 'm', 2, 14); man += m; ai += m * sr(p + a.name + w + 'r', 0.55, 0.92); });
+        rows.push({ acc: a.name, owner: a.owner, person: p, uses: uses, manual: man, ai: ai, saved: man - ai });
+      });
+    });
+    return rows;
+  }
+  function h2(v) { return nfmt(v, 2); }
+  function aiPage() {
+    var weeks = aiWeeks(), wsel = state.aiWeek && weeks.some(function (w) { return w.id === state.aiWeek; }) ? state.aiWeek : '';
+    var wids = wsel ? [wsel] : weeks.map(function (w) { return w.id; });
+    var model = aiModel(), owners = [];
+    model.accounts.forEach(function (a) { if (a.owner && owners.indexOf(a.owner) === -1) owners.push(a.owner); }); owners.sort();
+    var fo = owners.indexOf(state.aiOwner) !== -1 ? state.aiOwner : '', q = String(state.aiQ || '').toLowerCase();
+    var accs = model.accounts.filter(function (a) { return (!fo || a.owner === fo) && (!q || (a.name + ' ' + a.owner + ' ' + a.people.join(' ')).toLowerCase().indexOf(q) !== -1); });
+    var keep = {}; accs.forEach(function (a) { keep[a.name] = 1; });
+    var nums = aiNumbers(model, wids).filter(function (r) { return keep[r.acc] && (!q || (r.acc + ' ' + r.owner).toLowerCase().indexOf(q) !== -1 || r.person.toLowerCase().indexOf(q) !== -1); });
+    var sum = function (a, k) { return a.reduce(function (s, r) { return s + r[k]; }, 0); };
+    var people = {}, peopleAI = {}; nums.forEach(function (r) { people[r.person] = 1; if (r.uses) peopleAI[r.person] = 1; });
+    var onAccs = accs.filter(function (a) { return a.on; }), saved = sum(nums, 'saved'), manual = sum(nums, 'manual'), perWeek = saved / wids.length;
+    var agentsAll = []; accs.forEach(function (a) { a.agents.forEach(function (g) { agentsAll.push(g); }); });
+    var live = agentsAll.filter(function (g) { return g.status === 'Live'; }).length;
+    var tile = function (l, v, sub, cls) { return '<div class="aik' + (cls ? ' ' + cls : '') + '"><div class="l">' + l + '</div><div class="n">' + v + '</div><div class="d">' + sub + '</div></div>'; };
+    var nP = Object.keys(people).length, nPA = Object.keys(peopleAI).length;
+    var overall = '<section class="aisec"><div class="aihd"><h3>Overall</h3></div><div class="aishow">Showing: <b>' + esc(fo || 'everyone') + '</b> · <b>' + esc(wsel ? weeks.filter(function (w) { return w.id === wsel; })[0].label : 'All weeks (' + weeks.length + ')') + '</b>' + (q ? ' · search “' + esc(state.aiQ) + '”' : '') + ' · click a number in the tables below to sort</div>' +
+      '<div class="aiks">' + tile('Accounts using AI', onAccs.length + ' / ' + accs.length, 'accounts with AI work logged') + tile('Resources using AI', nPA + ' / ' + nP, 'people with AI hours logged') +
+      tile('Hours saved', h2(saved), 'avg ' + h2(perWeek) + ' h/week · ' + (nPA ? h2(saved / nPA) : '0') + ' per resource', 'good') + tile('Saved %', (manual ? (100 * saved / manual).toFixed(1) : '0.0') + '%', 'of the manual time', 'good') +
+      tile('FTE saved', h2(perWeek / 40), 'hours saved per week ÷ 40') + tile('Live agents', live + ' / ' + agentsAll.length, 'agents built (dev + live)') + '</div></section>';
+    // ---- AI savings
+    var view = state.aiView || 'acc', so = state.ssort && state.ssort.t === 'ai' ? state.ssort : null;
+    var sortBy = function (rows, sec, defK) {
+      var k = so && so.k.indexOf(sec + ':') === 0 ? so.k.split(':')[1] : defK, d = so && so.k.indexOf(sec + ':') === 0 ? so.d : -1;
+      return { rows: rows.slice().sort(function (a, b) { var x = a[k], y = b[k]; return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y))) * d; }), k: k, d: d };
+    };
+    var th = function (sec, k, l, r, cur) { return '<th' + (r ? ' class="r"' : '') + '><button type="button" data-ssort="' + sec + ':' + k + '">' + l + (cur.k === k ? (cur.d > 0 ? ' ▲' : ' ▼') : '') + '</button></th>'; };
+    var pct = function (s, m) { return m ? (100 * s / m).toFixed(1) + '%' : '0%'; };
+    var body = '';
+    var noAi = accs.filter(function (a) { return !a.on; });
+    if (view === 'acc') {
+      var ar = onAccs.map(function (a) { var rs = nums.filter(function (r) { return r.acc === a.name; }); return { acc: a.name, owner: a.owner, ra: rs.filter(function (r) { return r.uses; }).length, rt: rs.length, manual: sum(rs, 'manual'), ai: sum(rs, 'ai'), saved: sum(rs, 'saved') }; });
+      ar.forEach(function (r) { r.pct = r.manual ? r.saved / r.manual : 0; });
+      var s1 = sortBy(ar, 'acc', 'saved');
+      body = '<table class="stab"><thead><tr>' + th('acc', 'acc', 'Account', 0, s1) + th('acc', 'owner', 'Manager', 0, s1) + th('acc', 'ra', 'Resources (using AI / total)', 1, s1) + th('acc', 'manual', 'Manual (hrs)', 1, s1) + th('acc', 'ai', 'AI (hrs)', 1, s1) + th('acc', 'saved', 'Saved (hrs)', 1, s1) + th('acc', 'pct', 'Saved %', 1, s1) + '</tr></thead><tbody>' +
+        (s1.rows.length ? s1.rows.map(function (r) { return '<tr><td><b>' + esc(r.acc) + '</b></td><td>' + esc(r.owner) + '</td><td class="r">' + r.ra + ' / ' + r.rt + '</td><td class="r">' + h2(r.manual) + '</td><td class="r">' + h2(r.ai) + '</td><td class="r sv">' + h2(r.saved) + '</td><td class="r sp">' + (100 * r.pct).toFixed(1) + '%</td></tr>'; }).join('') : '<tr><td colspan="7" class="empty">Nothing matches.</td></tr>') + '</tbody></table>';
+    } else if (view === 'person') {
+      var by = {};
+      nums.forEach(function (r) { var p = by[r.person] || (by[r.person] = { person: r.person, accs: [], aiAccs: 0, manual: 0, ai: 0, saved: 0 }); p.accs.push(r.acc); if (r.uses) p.aiAccs++; p.manual += r.manual; p.ai += r.ai; p.saved += r.saved; });
+      var pr = Object.keys(by).map(function (k) { var p = by[k]; p.na = p.accs.length; p.pct = p.manual ? p.saved / p.manual : 0; return p; });
+      var s2 = sortBy(pr, 'per', 'saved');
+      body = '<table class="stab"><thead><tr>' + th('per', 'person', 'Name', 0, s2) + '<th>Accounts</th>' + th('per', 'aiAccs', 'Accounts using AI', 1, s2) + th('per', 'manual', 'Manual (hrs)', 1, s2) + th('per', 'ai', 'AI (hrs)', 1, s2) + th('per', 'saved', 'Saved (hrs)', 1, s2) + th('per', 'pct', 'Saved %', 1, s2) + '</tr></thead><tbody>' +
+        (s2.rows.length ? s2.rows.map(function (p) { return '<tr><td><b>' + esc(p.person) + '</b></td><td class="accl">' + p.accs.map(esc).join('<br>') + '</td><td class="r">' + p.aiAccs + ' / ' + p.na + '</td><td class="r">' + h2(p.manual) + '</td><td class="r">' + h2(p.ai) + '</td><td class="r sv' + (p.saved ? '' : ' z') + '">' + h2(p.saved) + '</td><td class="r sp">' + (100 * p.pct).toFixed(1) + '%</td></tr>'; }).join('') : '<tr><td colspan="7" class="empty">Nothing matches.</td></tr>') + '</tbody></table>';
+    } else {
+      var s3 = sortBy(noAi.map(function (a) { return { acc: a.name, owner: a.owner, rt: a.people.length, dev: a.agents.length }; }), 'no', 'rt');
+      body = '<table class="stab"><thead><tr>' + th('no', 'acc', 'Account', 0, s3) + th('no', 'owner', 'Manager', 0, s3) + th('no', 'rt', 'Resources', 1, s3) + th('no', 'dev', 'Agents in development', 1, s3) + '<th>Suggested next step</th></tr></thead><tbody>' +
+        (s3.rows.length ? s3.rows.map(function (r) { return '<tr><td><b>' + esc(r.acc) + '</b></td><td>' + esc(r.owner) + '</td><td class="r">' + r.rt + '</td><td class="r">' + r.dev + '</td><td>' + esc(r.dev ? 'Move the agent in development to testing' : pick(r.acc + 'nx', ['Pick a first use case with the team', 'Start with report summaries', 'Try the QA checklist on one campaign', 'Book a 30-minute AI demo for the team'])) + '</td></tr>'; }).join('') : '<tr><td colspan="5" class="empty">Every account here uses AI.</td></tr>') + '</tbody></table>';
+    }
+    var savings = '<section class="aisec"><div class="aihd"><h3>AI Savings</h3></div><div class="aiview"><span class="flabel">View</span>' +
+      [['acc', 'By account'], ['person', 'By person'], ['none', 'No AI enabled · ' + noAi.length]].map(function (v) { return '<button type="button" data-aiview="' + v[0] + '" aria-pressed="' + (view === v[0]) + '">' + v[1] + '</button>'; }).join('') + '</div><div class="stw">' + body + '</div></section>';
+    // ---- AI agents
+    var gq = String(state.agQ || '').toLowerCase(), gs = state.agSt || '', gv = state.agV || '';
+    var verts = []; agentsAll.forEach(function (g) { if (verts.indexOf(g.vertical) === -1) verts.push(g.vertical); }); verts.sort();
+    var aRows = accs.map(function (a) {
+      var ag = a.agents.filter(function (g) { return (!gs || g.status === gs) && (!gv || g.vertical === gv) && (!gq || (a.name + ' ' + g.name).toLowerCase().indexOf(gq) !== -1); });
+      return { acc: a.name, owner: a.owner, agents: ag, live: ag.filter(function (g) { return g.status === 'Live'; }).length, total: ag.length, users: ag.reduce(function (s, g) { return s + g.users; }, 0) };
+    }).filter(function (r) { return r.total; });
+    var s4 = sortBy(aRows, 'ag', 'total');
+    var agList = function (r) { return '<tr class="agx"><td colspan="4"><ul>' + r.agents.map(function (g) { return '<li><b>' + esc(g.name) + '</b><span>' + esc(g.vertical) + '</span>' + spill({ Live: 'good', Testing: 'warn', 'In development': 'mute' }[g.status], g.status) + '<em>' + (g.users ? g.users + ' active user' + (g.users === 1 ? '' : 's') : '—') + '</em></li>'; }).join('') + '</ul></td></tr>'; };
+    var agents = '<section class="aisec"><div class="aihd"><h3>AI Agents</h3></div><div class="sctl"><input class="search" id="agQ" type="search" placeholder="Search account or agent" value="' + esc(state.agQ || '') + '">' +
+      '<label class="flab">Status <select class="select" id="agSt"><option value="">All</option>' + ['Live', 'Testing', 'In development'].map(function (x) { return '<option' + (x === gs ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select></label>' +
+      '<label class="flab">Vertical <select class="select" id="agV"><option value="">All</option>' + verts.map(function (x) { return '<option' + (x === gv ? ' selected' : '') + '>' + esc(x) + '</option>'; }).join('') + '</select></label></div>' +
+      '<div class="aiks three">' + tile('Accounts', aRows.length, 'with at least one agent') + tile('Agents (dev + live)', sum(aRows, 'total'), 'built or being built') + tile('Live agents', sum(aRows, 'live'), 'in use by the teams', 'good') + '</div>' +
+      '<div class="stw"><table class="stab"><thead><tr>' + th('ag', 'acc', 'Account', 0, s4) + th('ag', 'owner', 'Owner', 0, s4) + th('ag', 'total', 'Agents (live / total)', 1, s4) + th('ag', 'users', 'Active users · live', 1, s4) + '</tr></thead><tbody>' +
+      (s4.rows.length ? s4.rows.map(function (r) { var op = !!(state.agOpen || {})[r.acc]; return '<tr class="agrow' + (op ? ' open' : '') + '" data-agopen="' + esc(r.acc) + '"><td><span class="chev">' + (op ? '▾' : '▸') + '</span> <b>' + esc(r.acc) + '</b></td><td>' + esc(r.owner) + '</td><td class="r">' + r.live + ' / ' + r.total + '</td><td class="r">' + r.users + '</td></tr>' + (op ? agList(r) : ''); }).join('')
+        : '<tr><td colspan="4" class="empty">No agent matches.</td></tr>') + '</tbody></table></div><div class="hint" style="margin-top:8px">Click an account to see its agents.</div></section>';
+    var ctl = '<div class="sctl"><select class="select" id="aiOwner" aria-label="Manager"><option value="">Every manager</option>' + owners.map(function (o) { return '<option' + (o === fo ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') + '</select>' +
+      '<input class="search" id="aiQ" type="search" placeholder="Search a person or account" value="' + esc(state.aiQ || '') + '">' +
+      '<select class="select" id="aiWeek" aria-label="Week"><option value="">All weeks</option>' + weeks.slice().reverse().map(function (w) { return '<option value="' + w.id + '"' + (w.id === wsel ? ' selected' : '') + '>' + esc(w.label) + '</option>'; }).join('') + '</select>' +
+      ((fo || q || wsel) ? '<button type="button" class="freset" data-aireset="1">Reset ✕</button>' : '') + '</div>';
+    return '<div class="samplebar"><span class="sbadge">SAMPLE DATA</span><span>Names are your real accounts and people; <b>every number here is made up</b> to show how this page works. Real numbers will come from Google Cloud.</span></div>' + ctl + overall + savings + agents;
+  }
+
   function renderSoon(t) {
     var tabs = navTabs(state.raw || state.data);
     var need = [];
@@ -2217,11 +2356,12 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     if (tabs.indexOf('client') !== -1 && !((state.sumDim || {}).client || {}).rows) need.push('client');
     need.forEach(function (k) { if (!((state.sumDim || {})[k] || {}).loading) { state.sumDim = state.sumDim || {}; delete state.sumDim[k]; } loadSumDim(k); });
     if (need.length && need.some(function (k) { var x = (state.sumDim || {})[k]; return x && x.loading; })) { $('#dimView').innerHTML = '<div class="empty box">Loading your teams and accounts…</div>'; return; }
-    $('#dimView').innerHTML = samplePage(t).html;
+    $('#dimView').innerHTML = t === 'ai' ? aiPage() : samplePage(t).html;
   }
   /* a one-line figure per area for the Summary row */
   function sampleHeadline(t) {
     try {
+      if (t === 'ai') { var am = aiModel(), an = aiNumbers(am, aiWeeks().map(function (w) { return w.id; })); return h2(an.reduce(function (x, r) { return x + r.saved; }, 0)) + ' h saved'; }
       var ms = sampleMonths(), rows = sampleData(t, ms[ms.length - 1].id); if (!rows.length) return '';
       var s = function (k) { return rows.reduce(function (a, r) { return a + (r[k] || 0); }, 0); }, a = function (k) { return s(k) / rows.length; };
       return { ai: nfmt(s('hours')) + ' h saved', util: (s('avail') ? Math.round(100 * s('logged') / s('avail')) : 0) + '% utilized', proj: Math.round(a('util')) + '% avg', goals: rows.filter(function (r) { return r.status === 'At risk'; }).length + ' at risk',
@@ -3082,14 +3222,23 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     if (!SOON[state.tab]) return;
     if (e.target.id === 'sMonth') { state.smonth = e.target.value; renderSoon(state.tab); }
     if (e.target.id === 'sOwner') { state.sowner = e.target.value; renderSoon(state.tab); }
+    if (e.target.id === 'aiOwner') { state.aiOwner = e.target.value; renderSoon(state.tab); }
+    if (e.target.id === 'aiWeek') { state.aiWeek = e.target.value; renderSoon(state.tab); }
+    if (e.target.id === 'agSt') { state.agSt = e.target.value; renderSoon(state.tab); }
+    if (e.target.id === 'agV') { state.agV = e.target.value; renderSoon(state.tab); }
   });
   $('#dimView').addEventListener('input', function (e) {
-    if (!SOON[state.tab] || e.target.id !== 'sQ') return;
-    state.sq = e.target.value; clearTimeout(state.sqT);
-    state.sqT = setTimeout(function () { var pos = e.target.selectionStart; renderSoon(state.tab); var i = $('#sQ'); if (i) { i.focus(); try { i.setSelectionRange(pos, pos); } catch (x) { /* ok */ } } }, 250);
+    var KEY = { sQ: 'sq', aiQ: 'aiQ', agQ: 'agQ' }, id = e.target.id;
+    if (!SOON[state.tab] || !KEY[id]) return;
+    state[KEY[id]] = e.target.value; clearTimeout(state.sqT);
+    state.sqT = setTimeout(function () { var pos = e.target.selectionStart; renderSoon(state.tab); var i = $('#' + id); if (i) { i.focus(); try { i.setSelectionRange(pos, pos); } catch (x) { /* ok */ } } }, 250);
   });
   $('#dimView').addEventListener('click', function (e) {
     if (!SOON[state.tab]) return;
+    var av = e.target.closest('[data-aiview]'), ao = e.target.closest('[data-agopen]'), ar = e.target.closest('[data-aireset]');
+    if (av) { state.aiView = av.dataset.aiview; renderSoon(state.tab); return; }
+    if (ao) { state.agOpen = state.agOpen || {}; state.agOpen[ao.dataset.agopen] = !state.agOpen[ao.dataset.agopen]; renderSoon(state.tab); return; }
+    if (ar) { state.aiOwner = ''; state.aiQ = ''; state.aiWeek = ''; renderSoon(state.tab); return; }
     var s = e.target.closest('[data-ssort]'), f = e.target.closest('[data-sfilter]');
     if (s) { var k = s.dataset.ssort, cur = state.ssort && state.ssort.t === state.tab && state.ssort.k === k ? state.ssort.d : 0; state.ssort = { t: state.tab, k: k, d: cur === 1 ? -1 : 1 }; renderSoon(state.tab); }
     else if (f) { var v = f.dataset.sfilter; state.sfilter = (!v || state.sfilter === v) ? '' : v; renderSoon(state.tab); }
