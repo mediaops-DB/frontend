@@ -3,7 +3,7 @@
 <head>
 <base target="_top">
 <meta charset="utf-8">
-<!-- UI_VERSION=73 -->
+<!-- UI_VERSION=74 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lead SLA Monitor</title>
 <style>
@@ -902,6 +902,62 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
   .frow>*{flex:none}
 }
 .sidenav .navitem span{line-height:1.25}
+
+/* ---------- v74: sample data pages ---------- */
+.samplebar{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;background:#FFF6DD;border:1px solid #F1D98C;color:#6B5310;font-size:13px;margin-bottom:14px}
+.sbadge{flex:none;font-size:11px;font-weight:750;letter-spacing:.08em;padding:3px 8px;border-radius:6px;background:#E4B243;color:#fff}
+.sctl{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.sctl .select{min-width:150px}.sctl .search{min-width:200px;flex:0 1 260px}
+.skpi.live .n{color:var(--ink)}.skpi.live .n small{font-size:15px;color:var(--muted);margin-left:2px}
+.skpi.live .d{display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}.skpi.live .d span{color:var(--muted)}
+.dup{color:var(--done);font-weight:650}.ddn{color:var(--late);font-weight:650}.dl0{color:var(--muted)}
+.sgrid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-bottom:14px}
+.hb{display:flex;flex-direction:column;gap:8px}
+.hbr,.par,.funr{display:grid;grid-template-columns:minmax(90px,150px) minmax(0,1fr) auto;align-items:center;gap:10px;font-size:13px}
+.hbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--sbtx)}
+.hbt,.pat{position:relative;height:12px;border-radius:99px;background:var(--track);overflow:visible}
+.hbt i{display:block;height:100%;border-radius:99px}
+.hbt em{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);opacity:.45}
+.hbr b,.par b,.funr b{font-weight:650;min-width:54px;text-align:right}
+.pat{height:16px;background:transparent}
+.pat .pl{position:absolute;left:0;top:0;height:100%;border-radius:6px;background:var(--track)}
+.pat .ac{position:absolute;left:0;top:4px;height:8px;border-radius:6px}
+.pat .ac.good{background:var(--done-s)}.pat .ac.warn{background:var(--wait-s)}.pat .ac.bad{background:var(--late-s)}
+.pa{display:flex;flex-direction:column;gap:9px}
+.funr{width:100%;border:0;background:transparent;font:inherit;cursor:pointer;padding:6px 4px;border-radius:8px;text-align:left}
+.funr:hover{background:var(--panel2)}
+.fun{display:flex;flex-direction:column;gap:2px}
+.lc{width:100%;height:auto;display:block}
+.lc .gl{stroke:var(--line);stroke-width:1}.lc .ax{font-size:11px;fill:var(--muted)}
+.lcl{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:6px}
+.lcl i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}.lcl b{color:var(--ink)}
+.donut.sm{width:140px;height:140px}
+.dleg .dico:empty{width:12px;height:12px;border-radius:4px}
+.olist{list-style:none;margin:0;padding:0}
+.olist li{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px}
+.olist li:first-child{border-top:0}.olist li div{flex:1;min-width:0}.olist li span:not(.spill){display:block;font-size:12px;color:var(--muted)}
+.olist .ov{min-width:60px;text-align:right}
+.spill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:650;white-space:nowrap}
+.spill.good{background:var(--done-bg);color:var(--done)}.spill.warn{background:var(--wait-bg);color:var(--wait)}.spill.bad{background:var(--late-bg);color:var(--late)}
+.spill.mute{background:var(--unk-bg);color:var(--unk)}.spill.info{background:var(--brand-soft);color:var(--brand-ink)}
+.pbar{display:inline-block;width:70px;height:7px;border-radius:99px;background:var(--track);vertical-align:middle;margin-right:8px;overflow:hidden}
+.pbar i{display:block;height:100%}.pbar i.good{background:var(--done-s)}.pbar i.warn{background:var(--wait-s)}.pbar i.bad{background:var(--late-s)}
+.pnum{font-weight:650;display:inline-block;min-width:38px;text-align:right}
+.star{font-weight:700}.star.good{color:var(--done)}.star.warn{color:var(--wait)}.star.bad{color:var(--late)}
+.cm{color:var(--sbtx);font-style:italic}
+.fsel{margin-left:auto;font-size:13px;color:var(--muted)}
+.stw{overflow-x:auto}
+.stab{width:100%;border-collapse:collapse;font-size:13.5px}
+.stab th{text-align:left;font-size:11.5px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap;background:var(--panel2)}
+.stab th button{border:0;background:transparent;font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;padding:0}
+.stab th button:hover{color:var(--brand-ink)}
+.stab td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+.stab tr:hover td{background:var(--panel)}
+.stab .r{text-align:right;white-space:nowrap}
+.stab td .em{font-size:12px;color:var(--muted)}
+.road button em{font-style:normal;font-size:12px;color:var(--brand-ink);background:var(--brand-soft);padding:1px 7px;border-radius:999px;margin-left:4px}
+@media (max-width:1100px){.sgrid2{grid-template-columns:1fr}}
+@media (max-width:760px){.samplebar{align-items:flex-start}.sctl .select,.sctl .search{flex:1 1 100%}.stab{min-width:640px}.hbr,.par,.funr{grid-template-columns:90px minmax(0,1fr) auto}}
 </style>
 </head>
 <body>
@@ -992,7 +1048,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
 </div>
 
 <script src="firebase-config.js"></script>
-<script src="demo.js?v=73"></script>
+<script src="demo.js?v=74"></script>
 <script>
 (function () {
   'use strict';
@@ -1120,7 +1176,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     one: ['Internal monthly 1:1', 'Monthly 1:1 meetings, recorded by the team lead above each person'],
     client: ['Client 1:1', 'Monthly client feedback calls. Visible only to the account owner, people with access and the admin'],
     summary: ['Summary', 'Everything at a glance. Click a chart, a bar or an item to see the details'],
-    ai: ['AI efficiency', 'How much work the teams do with AI, and the time it saves'],
+    ai: ['AI efficiency', 'How much the teams use AI, and the time it saves'],
     util: ['Team utilization / billability', 'Logged, billable and bench hours for every team member'],
     proj: ['Project-wise utilization', 'Planned against actual hours for every project and client'],
     csat: ['CSAT (client satisfaction)', 'Client satisfaction survey scores, by account'],
@@ -1847,9 +1903,9 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     if (state.sumDim[kind] && !state.sumDim[kind].err) return;
     state.sumDim[kind] = state.sumDim[kind] || { loading: true };
     server('getDimensionData', [kind, '', ''], function (d) {
-      state.sumDim[kind] = d.dimVersion !== DIM_VER ? { err: 'Update Dimensions.gs in Apps Script to see this.' } : { totals: d.totals, monthLabel: d.monthLabel, dueBy: d.dueBy };
-      if (state.tab === 'summary') renderSummary();
-    }, function (m) { state.sumDim[kind] = { err: m }; if (state.tab === 'summary') renderSummary(); });
+      state.sumDim[kind] = d.dimVersion !== DIM_VER ? { err: 'Update Dimensions.gs in Apps Script to see this.' } : { totals: d.totals, monthLabel: d.monthLabel, dueBy: d.dueBy, rows: d.rows || [] };
+      if (state.tab === 'summary') renderSummary(); else if (SOON[state.tab]) renderSoon(state.tab);
+    }, function (m) { state.sumDim[kind] = { err: m, rows: [] }; if (state.tab === 'summary') renderSummary(); else if (SOON[state.tab]) renderSoon(state.tab); });
   }
   function donut(c) {
     var R = 62, C = 2 * Math.PI * R, tot = c.total || 1, off = 0, segs = '', gap = c.total ? 2 : 0;
@@ -1910,31 +1966,267 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
       return '<li class="a-' + x[0] + '"><span class="aico">' + x[1] + '</span><div class="atx"><div>' + x[2] + '</div><span>' + x[3] + '</span></div><button type="button" class="btn sm" data-sgo="' + x[5] + '">' + x[4] + ' →</button></li>';
     }).join('') + '</ul>' : '<div class="aok">✓ Nothing needs your attention right now.</div>') + '</section>';
     var road = '<section class="road"><span class="rlab">More areas</span>' + SOON_TABS.map(function (t) {
-      return '<button type="button" data-tab="' + t + '"><span class="ric">' + NAVICON[t] + '</span>' + esc(TABNAME[t]) + '</button>'; }).join('') + '<span class="rnote">Data comes from Google Cloud once access is ready</span></section>';
+      var hl = sampleHeadline(t); return '<button type="button" data-tab="' + t + '"><span class="ric">' + NAVICON[t] + '</span>' + esc(TABNAME[t]) + (hl ? '<em>' + esc(hl) + '</em>' : '') + '</button>'; }).join('') + '<span class="rnote">Sample figures until Google Cloud is connected</span></section>';
     $('#dimView').innerHTML = '<div class="sumhead"><div class="kicker">' + esc(new Date().toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })) + '</div><h2>Hi ' + esc(meName().split(' ')[0]) + ', here is where things stand</h2></div>' +
       '<div class="sum2' + (left && right ? '' : ' one') + '">' + left + right + '</div>' + attHtml + road;
   }
 
-  /* ---------- the coming metrics: the page is ready, the data comes from Google Cloud (Keka) later ---------- */
+  /* ---------- The seven new areas: SAMPLE data built from your real teams and accounts (every number is made up) ----------
+     The names come from what this person can already see (their 1:1 teams and client accounts), so nobody sees more than before.
+     When Google Cloud is connected, only sampleData() is replaced by the real numbers; the pages, charts and filters stay. */
   var SOON = {
-    ai: { kpis: [['AI adoption', '% of the team using AI'], ['Hours saved', 'this month'], ['Use cases', 'live'], ['Teams reporting', 'of all teams']], cols: ['Team', 'Team lead', 'AI use cases', 'Hours saved', 'Efficiency %'] },
-    util: { kpis: [['Utilization', 'logged ÷ available hours'], ['Billability', 'billable ÷ logged hours'], ['Billable hours', 'this month'], ['Bench hours', 'not on a project']], cols: ['Person', 'Team', 'Logged hours', 'Billable hours', 'Utilization %', 'Billable %'] },
-    proj: { kpis: [['Projects', 'active'], ['Avg utilization', 'across projects'], ['Over-allocated', 'above 100%'], ['Under-allocated', 'below 70%']], cols: ['Project / client', 'Team size', 'Planned hours', 'Actual hours', 'Utilization %'] },
-    csat: { kpis: [['CSAT score', 'average, out of 5'], ['Responses', 'this quarter'], ['Happy clients', 'score 4 or 5'], ['Low scores', 'need a follow-up']], cols: ['Client', 'Account owner', 'Last survey', 'Score', 'Comment'] },
-    goals: { kpis: [['Goals set', 'this quarter'], ['On track', 'progress as planned'], ['At risk', 'behind plan'], ['Achieved', 'closed this quarter']], cols: ['Team', 'Team lead', 'Goal', 'Target', 'Progress', 'Status'] },
-    growth: { kpis: [['Opportunities', 'open'], ['Estimated value', 'of open opportunities'], ['In progress', 'being worked on'], ['Won', 'this quarter']], cols: ['Client', 'Account owner', 'Opportunity', 'Estimated value', 'Stage', 'Next step'] },
-    esat: { kpis: [['ESAT score', 'average, out of 5'], ['Participation', '% of the team answered'], ['Responses', 'this quarter'], ['Low scores', 'need a 1:1']], cols: ['Team', 'Team lead', 'Responses', 'Score', 'Trend'] }
+    ai: { by: 'team', label: 'AI efficiency' }, util: { by: 'person', label: 'Team utilization' }, proj: { by: 'account', label: 'Project utilization' },
+    goals: { by: 'team', label: 'Organic goals' }, csat: { by: 'account', label: 'CSAT' }, esat: { by: 'team', label: 'ESAT' }, growth: { by: 'account', label: 'Organic growth' }
   };
+  function srand(key) {   // the same name and month always give the same number
+    var h = 2166136261; key = String(key);
+    for (var i = 0; i < key.length; i++) { h ^= key.charCodeAt(i); h = Math.imul(h, 16777619); }
+    h += 0x6D2B79F5; var t = h;
+    t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  }
+  function sr(key, a, b) { return a + (b - a) * srand(key); }
+  function pick(key, list) { return list[Math.floor(srand(key) * list.length) % list.length]; }
+  function nfmt(n, d) { return Number(n).toLocaleString('en-IN', { maximumFractionDigits: d || 0, minimumFractionDigits: d || 0 }); }
+  function sampleMonths() {
+    var out = [], now = new Date();
+    for (var i = 5; i >= 0; i--) { var d = new Date(now.getFullYear(), now.getMonth() - i, 1); out.push({ id: d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2), label: d.toLocaleDateString([], { month: 'short', year: 'numeric' }), short: d.toLocaleDateString([], { month: 'short' }) }); }
+    return out;
+  }
+  function sampleOrg() {
+    var sd = state.sumDim || {}, one = (sd.oneonone || {}).rows || [], cl = (sd.client || {}).rows || [];
+    var teams = {}, order = [];
+    one.forEach(function (r) {
+      var k = r.tlEmail || r.tlName; if (!k) return;
+      if (!teams[k]) { teams[k] = { key: k, tl: r.tlName || humanName(r.tlEmail), members: [] }; order.push(k); }
+      if (r.member && !teams[k].members.some(function (m) { return m.name === r.member; })) teams[k].members.push({ name: r.member, desig: r.desig || '' });
+    });
+    if (!order.length) {   // no 1:1 teams visible: the team leads asked in chat requests, each with their own row
+      var seen = {};
+      ((state.raw || state.data || {}).initiatives || []).forEach(function (i) { (i.leads || []).forEach(function (l) { if (!seen[l.email]) { seen[l.email] = 1; teams[l.email] = { key: l.email, tl: l.name, members: [{ name: l.name, desig: 'Team lead' }] }; order.push(l.email); } }); });
+    }
+    var accs = [], aseen = {};
+    cl.forEach(function (r) { var k = r.initiative || r.client; if (!k || aseen[k]) return; aseen[k] = 1; accs.push({ name: r.initiative || r.client, client: r.client || '', owner: r.ownerName || humanName(r.ownerEmail), size: (r.team || []).length }); });
+    if (!accs.length) for (var i = 1; i <= 8; i++) accs.push({ name: 'Sample account ' + i, client: '', owner: order.length ? teams[order[(i - 1) % order.length]].tl : 'Account owner', size: 0 });
+    return { teams: order.map(function (k) { return teams[k]; }).sort(function (a, b) { return String(a.tl).localeCompare(String(b.tl)); }), accounts: accs.sort(function (a, b) { return String(a.name).localeCompare(String(b.name)); }) };
+  }
+  var AI_CASES = ['Campaign QA checklist with Gemini', 'Pacing report summaries', 'Trafficking ticket triage', 'Client email drafts', 'Discrepancy root-cause notes', 'Creative spec checks', 'Line item setup review', 'Weekly performance recap'];
+  var GOALS = [['Launch campaigns within 24 hours', '24h'], ['Zero billing discrepancies', '0 issues'], ['Automate weekly pacing reports', '5 reports'], ['QA first-pass rate', '98%'],
+    ['Certify team members in DV360', '3 people'], ['Cut ticket backlog', '−30%'], ['Document every client setup', '100%'], ['Reply to client emails same day', '95%']];
+  var OPPS = ['Add CTV campaign management', 'Take over programmatic reporting', 'Extend ad ops cover to EMEA hours', 'Creative QA for social campaigns', 'Unified reporting pipeline', 'Retail media onboarding', 'Audience data clean-up', 'Yield optimisation review'];
+  var NEXT = ['Share a proposal draft', 'Book a scoping call', 'Send pricing', 'Confirm the start date', 'Get sign-off from the client lead', 'Prepare a pilot plan'];
+  var CSAT_TXT = { 5: ['Very responsive team, always on time.', 'Proactive ideas every week.', 'Reports are clear and accurate.'], 4: ['Good support, small delays on reports.', 'Happy overall, want faster turnaround.', 'Solid work; keep the weekly call.'], 3: ['Some errors in trafficking this month.', 'Needs quicker replies on urgent asks.', 'Reporting was late twice.'] };
+
+  function sampleData(t, month) {
+    var org = sampleOrg(), M = month, prev = function (m) { var p = m.split('-'), d = new Date(+p[0], +p[1] - 2, 1); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2); };
+    if (t === 'ai') return org.teams.map(function (tm) {
+      var n = Math.max(tm.members.length, 1), adopt = Math.round(sr(tm.key + M + 'ad', 42, 96)), cases = Math.round(sr(tm.key + M + 'uc', 1, 5));
+      return { team: tm.tl + '’s team', tl: tm.tl, size: n, cases: cases, hours: Math.round(n * adopt / 100 * sr(tm.key + M + 'h', 2.5, 7)), adopt: adopt, eff: Math.round(sr(tm.key + M + 'ef', 6, 32)), top: pick(tm.key + 'c', AI_CASES), reporting: srand(tm.key + M + 'rp') > 0.12 };
+    });
+    if (t === 'util') {
+      var rows = [];
+      org.teams.forEach(function (tm) {
+        tm.members.forEach(function (p) {
+          var avail = 160, logged = Math.round(sr(p.name + M + 'lg', 112, 178)), bill = Math.round(logged * sr(p.name + M + 'bl', 0.55, 0.97));
+          rows.push({ person: p.name, desig: p.desig, tl: tm.tl, avail: avail, logged: logged, bill: bill, util: Math.round(100 * logged / avail), billp: Math.round(100 * bill / logged) });
+        });
+      });
+      return rows;
+    }
+    if (t === 'proj') return org.accounts.map(function (a) {
+      var size = a.size || Math.round(sr(a.name + 'sz', 2, 7)), planned = Math.round(size * sr(a.name + M + 'pl', 110, 160) / 10) * 10, actual = Math.round(planned * sr(a.name + M + 'ac', 0.74, 1.16));
+      return { acc: a.name, client: a.client, owner: a.owner, size: size, planned: planned, actual: actual, util: Math.round(100 * actual / planned) };
+    });
+    if (t === 'goals') {
+      var g = [];
+      org.teams.forEach(function (tm) {
+        var k = Math.round(sr(tm.key + 'ng', 1, 3));
+        for (var i = 0; i < k; i++) { var gl = GOALS[(Math.floor(srand(tm.key + 'g' + i) * GOALS.length) + i) % GOALS.length], pr = Math.round(sr(tm.key + M + 'p' + i, 20, 112)); pr = Math.min(pr, 100);
+          g.push({ team: tm.tl + '’s team', tl: tm.tl, goal: gl[0], target: gl[1], prog: pr, status: pr >= 100 ? 'Achieved' : (pr >= 60 ? 'On track' : 'At risk') }); }
+      });
+      return g;
+    }
+    if (t === 'csat') return org.accounts.map(function (a) {
+      var sc = Math.round(sr(a.name + M + 'cs', 3.1, 5.0) * 10) / 10, pv = Math.round(sr(a.name + prev(M) + 'cs', 3.1, 5.0) * 10) / 10, band = sc >= 4.5 ? 5 : (sc >= 3.8 ? 4 : 3);
+      return { acc: a.name, client: a.client, owner: a.owner, score: sc, prev: pv, resp: Math.round(sr(a.name + M + 'cr', 1, 6)), day: Math.round(sr(a.name + M + 'cd', 3, 26)), comment: pick(a.name + M + 'cc', CSAT_TXT[band]) };
+    });
+    if (t === 'esat') return org.teams.map(function (tm) {
+      var n = Math.max(tm.members.length, 1), resp = Math.max(1, Math.round(n * sr(tm.key + M + 'pr', 0.58, 1))), sc = Math.round(sr(tm.key + M + 'es', 3.3, 4.9) * 10) / 10, pv = Math.round(sr(tm.key + prev(M) + 'es', 3.3, 4.9) * 10) / 10;
+      return { team: tm.tl + '’s team', tl: tm.tl, size: n, resp: resp, score: sc, prev: pv };
+    });
+    if (t === 'growth') {
+      var o = [];
+      org.accounts.forEach(function (a) {
+        var k = Math.floor(sr(a.name + 'no', 0, 2.6));
+        for (var i = 0; i < k; i++) {
+          var stage = pick(a.name + M + 'st' + i, ['Identified', 'Proposed', 'Proposed', 'Negotiation', 'Negotiation', 'Won', 'Won', 'Lost']);
+          o.push({ acc: a.name, client: a.client, owner: a.owner, opp: OPPS[(Math.floor(srand(a.name + 'o' + i) * OPPS.length) + i) % OPPS.length], value: Math.round(sr(a.name + 'v' + i, 4, 60)) * 1000, stage: stage, next: stage === 'Won' ? 'Kick-off with the client' : (stage === 'Lost' ? 'Note the reason, revisit next quarter' : pick(a.name + M + 'nx' + i, NEXT)) });
+        }
+      });
+      return o;
+    }
+    return [];
+  }
+
+  /* ---- small charts (SVG) ---- */
+  function chHBars(items, fmt, refLine) {
+    var max = Math.max.apply(null, items.map(function (x) { return x.v; }).concat([refLine || 0, 1]));
+    return '<div class="hb">' + items.map(function (x) {
+      return '<div class="hbr" title="' + esc(x.l + ': ' + fmt(x.v)) + '"><span class="hbl">' + esc(x.l) + '</span><span class="hbt"><i style="width:' + (100 * x.v / max).toFixed(1) + '%;background:' + (x.c || 'var(--brand)') + '"></i>' +
+        (refLine ? '<em style="left:' + (100 * refLine / max).toFixed(1) + '%"></em>' : '') + '</span><b>' + fmt(x.v) + '</b></div>';
+    }).join('') + '</div>';
+  }
+  function chLine(series, labels, lo, hi, fmt) {
+    var W = 560, H = 210, L = 40, R = 14, T = 14, B = 28, w = W - L - R, h = H - T - B;
+    var x = function (i) { return L + (labels.length > 1 ? i * w / (labels.length - 1) : w / 2); }, y = function (v) { return T + h - (v - lo) / (hi - lo) * h; };
+    var grid = '', ticks = 4;
+    for (var g = 0; g <= ticks; g++) { var v = lo + (hi - lo) * g / ticks; grid += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(v).toFixed(1) + '" y2="' + y(v).toFixed(1) + '" class="gl"/><text x="' + (L - 6) + '" y="' + (y(v) + 4).toFixed(1) + '" text-anchor="end" class="ax">' + fmt(v) + '</text>'; }
+    var xl = labels.map(function (l, i) { return '<text x="' + x(i).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" class="ax">' + esc(l) + '</text>'; }).join('');
+    var lines = series.map(function (s) {
+      var d = s.pts.map(function (v, i) { return (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1); }).join(' ');
+      return '<path d="' + d + '" fill="none" stroke="' + s.c + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>' +
+        s.pts.map(function (v, i) { return '<circle cx="' + x(i).toFixed(1) + '" cy="' + y(v).toFixed(1) + '" r="' + (i === s.pts.length - 1 ? 4.5 : 3) + '" fill="' + (i === s.pts.length - 1 ? s.c : 'var(--card)') + '" stroke="' + s.c + '" stroke-width="2"><title>' + esc(s.n + ', ' + labels[i] + ': ' + fmt(v)) + '</title></circle>'; }).join('');
+    }).join('');
+    return '<svg class="lc" viewBox="0 0 ' + W + ' ' + H + '" role="img">' + grid + xl + lines + '</svg>' +
+      '<div class="lcl">' + series.map(function (s) { return '<span><i style="background:' + s.c + '"></i>' + esc(s.n) + ' <b>' + fmt(s.pts[s.pts.length - 1]) + '</b></span>'; }).join('') + '</div>';
+  }
+  function chDonut(parts, center, sub) {
+    var R = 54, C = 2 * Math.PI * R, tot = parts.reduce(function (a, p) { return a + p.v; }, 0) || 1, off = 0;
+    var segs = parts.map(function (p) { if (!p.v) return ''; var len = Math.max(C * p.v / tot - 2, 1.5), s = '<circle cx="70" cy="70" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="18" stroke-dasharray="' + len.toFixed(1) + ' ' + (C - len).toFixed(1) + '" stroke-dashoffset="' + (-off).toFixed(1) + '" transform="rotate(-90 70 70)"><title>' + esc(p.l + ': ' + p.v) + '</title></circle>'; off += C * p.v / tot; return s; }).join('');
+    return '<div class="dwrap"><svg class="donut sm" viewBox="0 0 140 140"><circle cx="70" cy="70" r="' + R + '" fill="none" stroke="var(--track)" stroke-width="18"/>' + segs +
+      '<text x="70" y="70" text-anchor="middle" class="dnum">' + center + '</text><text x="70" y="88" text-anchor="middle" class="dlab">' + esc(sub) + '</text></svg>' +
+      '<ul class="dleg">' + parts.map(function (p) { return '<li><button type="button" data-sfilter="' + esc(p.l) + '"><span class="dico" style="--c:' + p.c + '"></span><span class="dl">' + esc(p.l) + '</span><b>' + p.v + '</b><span class="dp">' + Math.round(100 * p.v / tot) + '%</span></button></li>'; }).join('') + '</ul></div>';
+  }
+  function spill(kind, text) { return '<span class="spill ' + kind + '">' + esc(text) + '</span>'; }
+  function pbar(p, kind) { return '<span class="pbar"><i class="' + kind + '" style="width:' + Math.min(100, p) + '%"></i></span><b class="pnum">' + p + '%</b>'; }
+  function stars(s) { var k = s >= 4.5 ? 'good' : (s >= 3.8 ? 'warn' : 'bad'); return '<span class="star ' + k + '">★ ' + s.toFixed(1) + '</span>'; }
+  function delta(a, b, unit, dp) { var d = Math.round((a - b) * (dp ? 10 : 1)) / (dp ? 10 : 1); if (!d) return '<span class="dl0">no change</span>'; return '<span class="' + (d > 0 ? 'dup' : 'ddn') + '">' + (d > 0 ? '▲ ' : '▼ ') + Math.abs(d).toFixed(dp ? 1 : 0) + (unit || '') + '</span>'; }
+
+  /* ---- one page per area ---- */
+  function samplePage(t) {
+    var ms = sampleMonths(), M = state.smonth && ms.some(function (m) { return m.id === state.smonth; }) ? state.smonth : ms[ms.length - 1].id;
+    var all = sampleData(t, M), prevM = ms[Math.max(0, ms.map(function (m) { return m.id; }).indexOf(M) - 1)].id, prevAll = sampleData(t, prevM);
+    var who = SOON[t].by === 'account' ? 'owner' : 'tl';
+    var owners = []; all.forEach(function (r) { if (r[who] && owners.indexOf(r[who]) === -1) owners.push(r[who]); }); owners.sort();
+    var f = state.sowner && owners.indexOf(state.sowner) !== -1 ? state.sowner : '', q = String(state.sq || '').toLowerCase(), sf = state.sfilter || '';
+    var rows = all.filter(function (r) { return (!f || r[who] === f) && (!q || JSON.stringify(r).toLowerCase().indexOf(q) !== -1); });
+    var prevRows = prevAll.filter(function (r) { return !f || r[who] === f; });
+    var sum = function (a, k) { return a.reduce(function (s, r) { return s + (r[k] || 0); }, 0); }, avg = function (a, k) { return a.length ? sum(a, k) / a.length : 0; };
+    var kp = [], chart = '', cols = [], extra = '', status = null;
+    var kpi = function (l, v, d, sub) { return '<div class="skpi live"><div class="l">' + esc(l) + '</div><div class="n">' + v + '</div><div class="d">' + (d || '') + (sub ? ' <span>' + esc(sub) + '</span>' : '') + '</div></div>'; };
+    var trend = function (fn) { return ms.map(function (m) { return fn(sampleData(t, m.id).filter(function (r) { return !f || r[who] === f; })); }); };
+    if (t === 'ai') {
+      kp = [kpi('AI adoption', Math.round(avg(rows, 'adopt')) + '%', delta(avg(rows, 'adopt'), avg(prevRows, 'adopt'), ' pts'), 'of the team uses AI'), kpi('Hours saved', nfmt(sum(rows, 'hours')), delta(sum(rows, 'hours'), sum(prevRows, 'hours'), ' h'), 'this month'),
+        kpi('Use cases live', sum(rows, 'cases'), delta(sum(rows, 'cases'), sum(prevRows, 'cases')), ''), kpi('Teams reporting', rows.filter(function (r) { return r.reporting; }).length + ' of ' + rows.length, '', '')];
+      chart = '<div class="sgrid2"><section class="spanel"><div class="sph"><h3>Hours saved by team</h3><span class="hint">top 10</span></div>' + chHBars(rows.slice().sort(function (a, b) { return b.hours - a.hours; }).slice(0, 10).map(function (r) { return { l: r.tl, v: r.hours }; }), function (v) { return nfmt(v) + ' h'; }) + '</section>' +
+        '<section class="spanel"><div class="sph"><h3>Adoption over 6 months</h3></div>' + chLine([{ n: 'AI adoption', c: 'var(--brand)', pts: trend(function (a) { return Math.round(avg(a, 'adopt')); }) }], ms.map(function (m) { return m.short; }), 0, 100, function (v) { return Math.round(v) + '%'; }) + '</section></div>';
+      cols = [['team', 'Team'], ['tl', 'Team lead'], ['top', 'Top use case'], ['cases', 'Use cases', 'n'], ['hours', 'Hours saved', 'n', function (r) { return nfmt(r.hours) + ' h'; }], ['adopt', 'Adoption', 'n', function (r) { return pbar(r.adopt, r.adopt >= 75 ? 'good' : (r.adopt >= 55 ? 'warn' : 'bad')); }], ['eff', 'Efficiency gain', 'n', function (r) { return '+' + r.eff + '%'; }]];
+    }
+    if (t === 'util') {
+      var st = function (r) { return r.util > 100 ? 'Over' : (r.util >= 80 ? 'Healthy' : (r.util >= 70 ? 'Watch' : 'Under')); };
+      rows.forEach(function (r) { r.st = st(r); });
+      status = [['Healthy', 'var(--done-s)'], ['Watch', 'var(--wait-s)'], ['Under', 'var(--unk-s)'], ['Over', 'var(--late-s)']];
+      var ul = sum(rows, 'logged'), ua = sum(rows, 'avail'), ub = sum(rows, 'bill'), pl = sum(prevRows, 'logged'), pa = sum(prevRows, 'avail'), pb = sum(prevRows, 'bill');
+      kp = [kpi('Utilization', (ua ? Math.round(100 * ul / ua) : 0) + '%', delta(ua ? 100 * ul / ua : 0, pa ? 100 * pl / pa : 0, ' pts'), 'logged ÷ available'), kpi('Billability', (ul ? Math.round(100 * ub / ul) : 0) + '%', delta(ul ? 100 * ub / ul : 0, pl ? 100 * pb / pl : 0, ' pts'), 'billable ÷ logged'),
+        kpi('Billable hours', nfmt(ub), delta(ub, pb, ' h'), ''), kpi('Bench hours', nfmt(Math.max(0, ua - ul)), '', 'available, not logged')];
+      chart = '<div class="sgrid2"><section class="spanel"><div class="sph"><h3>Utilization and billability</h3><span class="hint">last 6 months</span></div>' +
+        chLine([{ n: 'Utilization', c: 'var(--brand)', pts: trend(function (a) { var l = sum(a, 'logged'), v = sum(a, 'avail'); return v ? Math.round(100 * l / v) : 0; }) }, { n: 'Billability', c: '#C98A1B', pts: trend(function (a) { var l = sum(a, 'logged'), b = sum(a, 'bill'); return l ? Math.round(100 * b / l) : 0; }) }], ms.map(function (m) { return m.short; }), 50, 110, function (v) { return Math.round(v) + '%'; }) + '</section>' +
+        '<section class="spanel"><div class="sph"><h3>People by status</h3><span class="hint">click to filter</span></div>' + chDonut(status.map(function (s) { return { l: s[0], v: rows.filter(function (r) { return r.st === s[0]; }).length, c: s[1] }; }), rows.length, 'people') + '</section></div>';
+      cols = [['person', 'Person', '', function (r) { return '<b>' + esc(r.person) + '</b><div class="em">' + esc(r.desig || '') + '</div>'; }], ['tl', 'Team lead'], ['logged', 'Logged', 'n', function (r) { return r.logged + ' h'; }], ['bill', 'Billable', 'n', function (r) { return r.bill + ' h'; }],
+        ['util', 'Utilization', 'n', function (r) { return pbar(r.util, r.st === 'Healthy' ? 'good' : (r.st === 'Over' ? 'bad' : 'warn')); }], ['billp', 'Billable %', 'n', function (r) { return r.billp + '%'; }], ['st', 'Status', '', function (r) { return spill({ Healthy: 'good', Watch: 'warn', Under: 'mute', Over: 'bad' }[r.st], r.st === 'Over' ? 'Over 100%' : r.st); }]];
+    }
+    if (t === 'proj') {
+      rows.forEach(function (r) { r.st = r.util > 105 ? 'Over-allocated' : (r.util < 85 ? 'Under-allocated' : 'On plan'); });
+      status = [['On plan', 'var(--done-s)'], ['Under-allocated', 'var(--wait-s)'], ['Over-allocated', 'var(--late-s)']];
+      kp = [kpi('Projects', rows.length, '', 'active this month'), kpi('Avg utilization', Math.round(avg(rows, 'util')) + '%', delta(avg(rows, 'util'), avg(prevRows, 'util'), ' pts'), 'actual ÷ planned'),
+        kpi('Over-allocated', rows.filter(function (r) { return r.st === 'Over-allocated'; }).length, '', 'above 105%'), kpi('Under-allocated', rows.filter(function (r) { return r.st === 'Under-allocated'; }).length, '', 'below 85%')];
+      var top = rows.slice().sort(function (a, b) { return b.planned - a.planned; }).slice(0, 8), mx = Math.max.apply(null, top.map(function (r) { return Math.max(r.planned, r.actual); }).concat([1]));
+      chart = '<div class="sgrid2"><section class="spanel"><div class="sph"><h3>Planned and actual hours</h3><span class="hint">largest projects</span></div><div class="pa">' + top.map(function (r) {
+        return '<div class="par"><span class="hbl" title="' + esc(r.acc) + '">' + esc(r.acc) + '</span><span class="pat"><i class="pl" style="width:' + (100 * r.planned / mx).toFixed(1) + '%"></i><i class="ac ' + (r.st === 'Over-allocated' ? 'bad' : (r.st === 'Under-allocated' ? 'warn' : 'good')) + '" style="width:' + (100 * r.actual / mx).toFixed(1) + '%"></i></span><b>' + r.util + '%</b></div>'; }).join('') +
+        '</div><div class="lcl"><span><i style="background:var(--track)"></i>Planned</span><span><i style="background:var(--done-s)"></i>Actual</span></div></section>' +
+        '<section class="spanel"><div class="sph"><h3>Projects by status</h3><span class="hint">click to filter</span></div>' + chDonut(status.map(function (s) { return { l: s[0], v: rows.filter(function (r) { return r.st === s[0]; }).length, c: s[1] }; }), rows.length, 'projects') + '</section></div>';
+      cols = [['acc', 'Project / client', '', function (r) { return '<b>' + esc(r.acc) + '</b>' + (r.client && r.client !== r.acc ? '<div class="em">' + esc(r.client) + '</div>' : ''); }], ['owner', 'Account owner'], ['size', 'Team size', 'n'], ['planned', 'Planned', 'n', function (r) { return nfmt(r.planned) + ' h'; }], ['actual', 'Actual', 'n', function (r) { return nfmt(r.actual) + ' h'; }],
+        ['util', 'Utilization', 'n', function (r) { return pbar(r.util, r.st === 'On plan' ? 'good' : (r.st === 'Over-allocated' ? 'bad' : 'warn')); }], ['st', 'Status', '', function (r) { return spill({ 'On plan': 'good', 'Under-allocated': 'warn', 'Over-allocated': 'bad' }[r.st], r.st); }]];
+    }
+    if (t === 'goals') {
+      rows.forEach(function (r) { r.st = r.status; });
+      status = [['Achieved', 'var(--done-s)'], ['On track', 'var(--brand)'], ['At risk', 'var(--late-s)']];
+      kp = [kpi('Goals set', rows.length, '', 'this quarter'), kpi('On track', rows.filter(function (r) { return r.st === 'On track'; }).length, '', 'progress as planned'), kpi('At risk', rows.filter(function (r) { return r.st === 'At risk'; }).length, '', 'behind plan'), kpi('Achieved', rows.filter(function (r) { return r.st === 'Achieved'; }).length, '', 'done')];
+      chart = '<div class="sgrid2"><section class="spanel"><div class="sph"><h3>Goals by status</h3><span class="hint">click to filter</span></div>' + chDonut(status.map(function (s) { return { l: s[0], v: rows.filter(function (r) { return r.st === s[0]; }).length, c: s[1] }; }), rows.length, 'goals') + '</section>' +
+        '<section class="spanel"><div class="sph"><h3>Average progress by team</h3><span class="hint">top 10</span></div>' + chHBars((function () { var by = {}; rows.forEach(function (r) { (by[r.tl] = by[r.tl] || []).push(r.prog); }); return Object.keys(by).map(function (k) { return { l: k, v: Math.round(by[k].reduce(function (a, b) { return a + b; }, 0) / by[k].length) }; }).sort(function (a, b) { return b.v - a.v; }).slice(0, 10).map(function (x) { x.c = x.v >= 100 ? 'var(--done-s)' : (x.v >= 60 ? 'var(--brand)' : 'var(--late-s)'); return x; }); })(), function (v) { return v + '%'; }) + '</section></div>';
+      cols = [['team', 'Team'], ['tl', 'Team lead'], ['goal', 'Goal', '', function (r) { return '<b>' + esc(r.goal) + '</b>'; }], ['target', 'Target'], ['prog', 'Progress', 'n', function (r) { return pbar(r.prog, r.st === 'At risk' ? 'bad' : 'good'); }], ['st', 'Status', '', function (r) { return spill({ Achieved: 'good', 'On track': 'info', 'At risk': 'bad' }[r.st], r.st); }]];
+    }
+    if (t === 'csat') {
+      rows.forEach(function (r) { r.st = r.score >= 4.5 ? 'Delighted' : (r.score >= 3.8 ? 'Satisfied' : 'Needs follow-up'); });
+      status = [['Delighted', 'var(--done-s)'], ['Satisfied', 'var(--wait-s)'], ['Needs follow-up', 'var(--late-s)']];
+      kp = [kpi('CSAT score', avg(rows, 'score').toFixed(1) + '<small>/5</small>', delta(avg(rows, 'score'), avg(prevRows, 'score'), '', 1), 'average'), kpi('Responses', sum(rows, 'resp'), '', 'this month'),
+        kpi('Happy clients', (rows.length ? Math.round(100 * rows.filter(function (r) { return r.score >= 4; }).length / rows.length) : 0) + '%', '', 'score 4 or 5'), kpi('Need follow-up', rows.filter(function (r) { return r.st === 'Needs follow-up'; }).length, '', 'below 3.8')];
+      chart = '<div class="sgrid2"><section class="spanel"><div class="sph"><h3>CSAT over 6 months</h3></div>' + chLine([{ n: 'CSAT', c: 'var(--brand)', pts: trend(function (a) { return Math.round(avg(a, 'score') * 10) / 10; }) }], ms.map(function (m) { return m.short; }), 3, 5, function (v) { return v.toFixed(1); }) + '</section>' +
+        '<section class="spanel"><div class="sph"><h3>Accounts by score</h3><span class="hint">click to filter</span></div>' + chDonut(status.map(function (s) { return { l: s[0], v: rows.filter(function (r) { return r.st === s[0]; }).length, c: s[1] }; }), rows.length, 'accounts') + '</section></div>';
+      var mlab = ms.filter(function (m) { return m.id === M; })[0].short;
+      cols = [['acc', 'Client / account', '', function (r) { return '<b>' + esc(r.acc) + '</b>' + (r.client && r.client !== r.acc ? '<div class="em">' + esc(r.client) + '</div>' : ''); }], ['owner', 'Account owner'], ['day', 'Last survey', 'n', function (r) { return r.day + ' ' + mlab; }], ['score', 'Score', 'n', function (r) { return stars(r.score) + ' ' + delta(r.score, r.prev, '', 1); }], ['comment', 'Comment', '', function (r) { return '<span class="cm">“' + esc(r.comment) + '”</span>'; }]];
+    }
+    if (t === 'esat') {
+      rows.forEach(function (r) { r.part = Math.round(100 * r.resp / r.size); r.st = r.score >= 4.3 ? 'Engaged' : (r.score >= 3.8 ? 'Okay' : 'Needs a 1:1'); });
+      status = [['Engaged', 'var(--done-s)'], ['Okay', 'var(--wait-s)'], ['Needs a 1:1', 'var(--late-s)']];
+      kp = [kpi('ESAT score', avg(rows, 'score').toFixed(1) + '<small>/5</small>', delta(avg(rows, 'score'), avg(prevRows, 'score'), '', 1), 'average'), kpi('Participation', (sum(rows, 'size') ? Math.round(100 * sum(rows, 'resp') / sum(rows, 'size')) : 0) + '%', '', 'of people answered'),
+        kpi('Responses', sum(rows, 'resp'), '', 'this month'), kpi('Teams to follow up', rows.filter(function (r) { return r.st === 'Needs a 1:1'; }).length, '', 'score below 3.8')];
+      chart = '<div class="sgrid2"><section class="spanel"><div class="sph"><h3>Score by team</h3><span class="hint">line = 4.0 target</span></div>' + chHBars(rows.slice().sort(function (a, b) { return b.score - a.score; }).slice(0, 12).map(function (r) { return { l: r.tl, v: r.score, c: r.score >= 4.3 ? 'var(--done-s)' : (r.score >= 3.8 ? 'var(--wait-s)' : 'var(--late-s)') }; }), function (v) { return v.toFixed(1); }, 4) + '</section>' +
+        '<section class="spanel"><div class="sph"><h3>ESAT over 6 months</h3></div>' + chLine([{ n: 'ESAT', c: 'var(--brand)', pts: trend(function (a) { return Math.round(avg(a, 'score') * 10) / 10; }) }], ms.map(function (m) { return m.short; }), 3, 5, function (v) { return v.toFixed(1); }) + '</section></div>';
+      cols = [['team', 'Team'], ['tl', 'Team lead'], ['resp', 'Responses', 'n', function (r) { return r.resp + ' of ' + r.size; }], ['part', 'Participation', 'n', function (r) { return pbar(r.part, r.part >= 80 ? 'good' : 'warn'); }], ['score', 'Score', 'n', function (r) { return stars(r.score); }], ['trend', 'Trend', 'n', function (r) { return delta(r.score, r.prev, '', 1); }], ['st', 'Status', '', function (r) { return spill({ Engaged: 'good', Okay: 'warn', 'Needs a 1:1': 'bad' }[r.st], r.st); }]];
+      rows.forEach(function (r) { r.trend = r.score - r.prev; });
+    }
+    if (t === 'growth') {
+      rows.forEach(function (r) { r.st = r.stage; });
+      var stages = [['Identified', 'var(--unk-s)'], ['Proposed', 'var(--wait-s)'], ['Negotiation', 'var(--brand)'], ['Won', 'var(--done-s)'], ['Lost', 'var(--late-s)']];
+      status = stages;
+      var open = rows.filter(function (r) { return r.stage !== 'Won' && r.stage !== 'Lost'; }), money = function (v) { return '$' + (v >= 1000 ? nfmt(v / 1000, v % 1000 ? 1 : 0) + 'k' : nfmt(v)); };
+      kp = [kpi('Open opportunities', open.length, '', 'not won or lost yet'), kpi('Estimated value', money(sum(open, 'value')), '', 'per year, open ones'), kpi('In progress', rows.filter(function (r) { return r.stage === 'Proposed' || r.stage === 'Negotiation'; }).length, '', 'proposed or negotiating'),
+        (function () {   // won over the last three months
+          var ids = ms.map(function (m) { return m.id; }), at = ids.indexOf(M), won = [];
+          ids.slice(Math.max(0, at - 2), at + 1).forEach(function (m) { sampleData('growth', m).forEach(function (r) { if (r.stage === 'Won' && (!f || r.owner === f)) won.push(r); }); });
+          return kpi('Won', won.length + ' · ' + money(sum(won, 'value')), '', 'last 3 months');
+        })()];
+      var smax = Math.max.apply(null, stages.map(function (s) { return sum(rows.filter(function (r) { return r.stage === s[0]; }), 'value'); }).concat([1]));
+      chart = '<div class="sgrid2"><section class="spanel"><div class="sph"><h3>Pipeline by stage</h3><span class="hint">click to filter</span></div><div class="fun">' + stages.map(function (s) {
+        var rs = rows.filter(function (r) { return r.stage === s[0]; }), v = sum(rs, 'value');
+        return '<button type="button" class="funr" data-sfilter="' + s[0] + '"><span class="hbl">' + s[0] + '</span><span class="hbt"><i style="width:' + (100 * v / smax).toFixed(1) + '%;background:' + s[1] + '"></i></span><b>' + rs.length + ' · ' + money(v) + '</b></button>'; }).join('') + '</div></section>' +
+        '<section class="spanel"><div class="sph"><h3>Biggest open opportunities</h3></div><ul class="olist">' + open.slice().sort(function (a, b) { return b.value - a.value; }).slice(0, 5).map(function (r) {
+          return '<li><div><b>' + esc(r.opp) + '</b><span>' + esc(r.acc) + ' · ' + esc(r.owner) + '</span></div>' + spill({ Identified: 'mute', Proposed: 'warn', Negotiation: 'info' }[r.stage], r.stage) + '<b class="ov">' + money(r.value) + '</b></li>'; }).join('') + '</ul></section></div>';
+      cols = [['acc', 'Client', '', function (r) { return '<b>' + esc(r.acc) + '</b>'; }], ['owner', 'Account owner'], ['opp', 'Opportunity'], ['value', 'Est. value / year', 'n', function (r) { return money(r.value); }], ['st', 'Stage', '', function (r) { return spill({ Identified: 'mute', Proposed: 'warn', Negotiation: 'info', Won: 'good', Lost: 'bad' }[r.st], r.st); }], ['next', 'Next step']];
+    }
+    // status filter from a chart, then sort
+    var shown = sf ? rows.filter(function (r) { return r.st === sf; }) : rows;
+    var so = state.ssort && state.ssort.t === t ? state.ssort : null;
+    if (so) shown = shown.slice().sort(function (a, b) { var x = a[so.k], y = b[so.k]; return (typeof x === 'number' && typeof y === 'number' ? x - y : String(x).localeCompare(String(y))) * so.d; });
+    var table = '<section class="panel reqs"><div class="phead"><h3>' + esc(PAGES[t][0]) + '</h3><span class="hint">' + shown.length + ' of ' + all.length + ' · click a column to sort</span>' +
+      (sf ? '<span class="fsel">Showing only <b>' + esc(sf) + '</b> <button type="button" class="freset" data-sfilter="">Reset ✕</button></span>' : '') + '</div>' +
+      '<div class="stw"><table class="stab"><thead><tr>' + cols.map(function (c) { return '<th' + (c[2] === 'n' ? ' class="r"' : '') + '><button type="button" data-ssort="' + c[0] + '">' + esc(c[1]) + (so && so.k === c[0] ? (so.d > 0 ? ' ▲' : ' ▼') : '') + '</button></th>'; }).join('') + '</tr></thead><tbody>' +
+      (shown.length ? shown.map(function (r) { return '<tr>' + cols.map(function (c) { return '<td' + (c[2] === 'n' ? ' class="r"' : '') + '>' + (c[3] ? c[3](r) : esc(r[c[0]] == null ? '' : r[c[0]])) + '</td>'; }).join('') + '</tr>'; }).join('')
+        : '<tr><td colspan="' + cols.length + '" class="empty">' + (all.length ? 'Nothing matches.' : 'No teams or accounts visible to you yet.') + '</td></tr>') + '</tbody></table></div></section>';
+    var ctl = '<div class="sctl"><select class="select" id="sMonth" aria-label="Month">' + ms.map(function (m) { return '<option value="' + m.id + '"' + (m.id === M ? ' selected' : '') + '>' + esc(m.label) + '</option>'; }).join('') + '</select>' +
+      (owners.length > 1 ? '<select class="select" id="sOwner" aria-label="Filter"><option value="">' + (who === 'owner' ? 'Every account owner' : 'Every team lead') + '</option>' + owners.map(function (o) { return '<option' + (o === f ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') + '</select>' : '') +
+      '<input class="search" id="sQ" type="search" placeholder="Search" value="' + esc(state.sq || '') + '"></div>';
+    return { html: '<div class="samplebar"><span class="sbadge">SAMPLE DATA</span><span>Names are your real teams and accounts; <b>every number here is made up</b> to show how this page works. Real numbers will come from Google Cloud.</span></div>' +
+      ctl + '<div class="skpis">' + kp.join('') + '</div>' + chart + table, rows: all };
+  }
   function renderSoon(t) {
-    var s = SOON[t];
-    $('#dimView').innerHTML =
-      '<div class="soonnote"><span class="sic">' + NAVICON[t] + '</span><div><b>No data available yet</b><span>This page is ready. Its numbers will come from Google Cloud (Keka) once access is set up, and each team lead will see only their own team.</span></div></div>' +
-      '<div class="skpis">' + s.kpis.map(function (k) { return '<div class="skpi"><div class="l">' + esc(k[0]) + '</div><div class="n">—</div><div class="d">' + esc(k[1]) + '</div></div>'; }).join('') + '</div>' +
-      '<div class="panel reqs"><div class="phead"><h3>' + esc(PAGES[t][0]) + ' by ' + esc(s.cols[0].toLowerCase()) + '</h3><span class="hint">Shown here once the data is connected</span></div>' +
-      '<div class="stable" role="table"><div class="str sth" role="row">' + s.cols.map(function (c) { return '<span role="columnheader">' + esc(c) + '</span>'; }).join('') + '</div>' +
-      [0, 1, 2].map(function () { return '<div class="str" role="row" aria-hidden="true">' + s.cols.map(function () { return '<span><i class="skl"></i></span>'; }).join('') + '</div>'; }).join('') +
-      '<div class="empty">No data available</div></div></div>';
-    $('#dimView').style.setProperty('--cols', s.cols.length);
+    var tabs = navTabs(state.raw || state.data);
+    var need = [];
+    if (tabs.indexOf('one') !== -1 && !((state.sumDim || {}).oneonone || {}).rows) need.push('oneonone');
+    if (tabs.indexOf('client') !== -1 && !((state.sumDim || {}).client || {}).rows) need.push('client');
+    need.forEach(function (k) { if (!((state.sumDim || {})[k] || {}).loading) { state.sumDim = state.sumDim || {}; delete state.sumDim[k]; } loadSumDim(k); });
+    if (need.length && need.some(function (k) { var x = (state.sumDim || {})[k]; return x && x.loading; })) { $('#dimView').innerHTML = '<div class="empty box">Loading your teams and accounts…</div>'; return; }
+    $('#dimView').innerHTML = samplePage(t).html;
+  }
+  /* a one-line figure per area for the Summary row */
+  function sampleHeadline(t) {
+    try {
+      var ms = sampleMonths(), rows = sampleData(t, ms[ms.length - 1].id); if (!rows.length) return '';
+      var s = function (k) { return rows.reduce(function (a, r) { return a + (r[k] || 0); }, 0); }, a = function (k) { return s(k) / rows.length; };
+      return { ai: nfmt(s('hours')) + ' h saved', util: (s('avail') ? Math.round(100 * s('logged') / s('avail')) : 0) + '% utilized', proj: Math.round(a('util')) + '% avg', goals: rows.filter(function (r) { return r.status === 'At risk'; }).length + ' at risk',
+        csat: a('score').toFixed(1) + ' / 5', esat: a('score').toFixed(1) + ' / 5', growth: rows.filter(function (r) { return r.stage !== 'Won' && r.stage !== 'Lost'; }).length + ' open' }[t] || '';
+    } catch (e) { return ''; }
   }
 
   /* ---------- Copilot as a tab ---------- */
@@ -2786,6 +3078,22 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     else if (t === 'client') state.dfilter = f;
     render(); window.scrollTo(0, 0);
   });
+  $('#dimView').addEventListener('change', function (e) {
+    if (!SOON[state.tab]) return;
+    if (e.target.id === 'sMonth') { state.smonth = e.target.value; renderSoon(state.tab); }
+    if (e.target.id === 'sOwner') { state.sowner = e.target.value; renderSoon(state.tab); }
+  });
+  $('#dimView').addEventListener('input', function (e) {
+    if (!SOON[state.tab] || e.target.id !== 'sQ') return;
+    state.sq = e.target.value; clearTimeout(state.sqT);
+    state.sqT = setTimeout(function () { var pos = e.target.selectionStart; renderSoon(state.tab); var i = $('#sQ'); if (i) { i.focus(); try { i.setSelectionRange(pos, pos); } catch (x) { /* ok */ } } }, 250);
+  });
+  $('#dimView').addEventListener('click', function (e) {
+    if (!SOON[state.tab]) return;
+    var s = e.target.closest('[data-ssort]'), f = e.target.closest('[data-sfilter]');
+    if (s) { var k = s.dataset.ssort, cur = state.ssort && state.ssort.t === state.tab && state.ssort.k === k ? state.ssort.d : 0; state.ssort = { t: state.tab, k: k, d: cur === 1 ? -1 : 1 }; renderSoon(state.tab); }
+    else if (f) { var v = f.dataset.sfilter; state.sfilter = (!v || state.sfilter === v) ? '' : v; renderSoon(state.tab); }
+  });
   $('#navTabs').addEventListener('click', function (e) {
     if (!e.target.closest('[data-navfold]')) return;
     state.soonOpen = !(state.soonOpen || SOON_TABS.indexOf(state.tab) !== -1);
@@ -2794,7 +3102,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
   });
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-tab],[data-dedit],[data-dpanel],[data-dadd],[data-dmember],[data-dmap],[data-dacc],[data-dgroup],[data-ofilter],[data-oopen],[data-viewas],[data-dscope],[data-dtile],[data-dupall],[data-dcore],[data-ct],[data-fp],[data-dfind],[data-dclean],[data-own],[data-ac],[data-mail],[data-crem],[data-cacc],[data-aa]'); if (!t) return;
-    if (t.dataset.tab) { state.tab = t.dataset.tab; if (t.dataset.group) { state.group = t.dataset.group; applyView(); } state.dnote = ''; state.dq = ''; state.dfilter = ''; state.viewAs = ''; state.dscope = undefined; render(); }
+    if (t.dataset.tab) { if (t.dataset.tab !== state.tab) { state.sfilter = ''; state.sq = ''; state.sowner = ''; state.ssort = null; } state.tab = t.dataset.tab; if (t.dataset.group) { state.group = t.dataset.group; applyView(); } state.dnote = ''; state.dq = ''; state.dfilter = ''; state.viewAs = ''; state.dscope = undefined; render(); }
     else if (t.dataset.dadd) openAddPeople();
     else if (t.dataset.dmember) openAddMember(t.dataset.dmember);
     else if (t.dataset.dmap) openMappingCheck();
