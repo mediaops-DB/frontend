@@ -3,7 +3,7 @@
 <head>
 <base target="_top">
 <meta charset="utf-8">
-<!-- UI_VERSION=75 -->
+<!-- UI_VERSION=76 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lead SLA Monitor</title>
 <style>
@@ -984,6 +984,59 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
 .agx li:first-child{border-top:0}.agx li span:not(.spill){color:var(--muted)}.agx li em{font-style:normal;color:var(--muted);font-size:12.5px}
 @media (max-width:1200px){.aiks{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:760px){.aiks,.aiks.three{grid-template-columns:repeat(2,minmax(0,1fr))}.agx li{grid-template-columns:1fr auto}.agx li span:not(.spill),.agx li em{display:none}}
+
+/* ---------- v76: Summary ---------- */
+.sumhero{margin:0 0 14px}.sumhero .kicker{color:var(--muted);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.sumhero h2{font-size:24px;font-weight:680;letter-spacing:-.015em;margin-top:2px}
+.kstrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+.kt{display:flex;gap:14px;align-items:center;text-align:left;font:inherit;color:inherit;padding:16px 18px;border-radius:16px;border:1px solid var(--line);background:var(--card);cursor:pointer;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(20,30,50,.05);transition:transform .15s,box-shadow .15s}
+.kt:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(20,30,50,.09)}
+.kt::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--kc)}
+.kti{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none;background:var(--kb);color:var(--kc);font-weight:800;font-size:18px}
+.kti svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ktx b{display:block;font-size:26px;font-weight:720;letter-spacing:-.02em;line-height:1.1}.ktx b small{font-size:15px;color:var(--muted);font-weight:600}
+.ktx span{display:block;font-size:13px;font-weight:600;color:var(--sbtx);margin-top:2px}.ktx em{display:block;font-style:normal;font-size:12px;color:var(--muted)}
+.kt.k1{--kc:var(--done);--kb:var(--done-bg)}.kt.k2{--kc:var(--late);--kb:var(--late-bg)}.kt.k3{--kc:var(--brand-ink);--kb:var(--brand-soft)}.kt.k4{--kc:#6A4BB4;--kb:#EAE3F8}.kt.k5{--kc:var(--wait);--kb:var(--wait-bg);cursor:default}
+.sum2.b{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+.sum2.b .attn{margin-bottom:0}
+.lreq{list-style:none;margin:0;padding:0}
+.lreq li button{width:100%;display:flex;flex-direction:column;gap:6px;text-align:left;border:0;background:transparent;font:inherit;color:inherit;padding:10px 8px;border-radius:10px;cursor:pointer;border-top:1px solid var(--line)}
+.lreq li:first-child button{border-top:0}
+.lreq li button:hover{background:var(--panel2)}
+.lt b{display:block;font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.lt span{font-size:12px;color:var(--muted)}
+.lb{display:flex;align-items:center;gap:10px}.mtrack.sm{flex:1;height:7px;display:flex;border-radius:99px;background:var(--track);overflow:hidden}.mtrack.sm i{display:block;height:100%}
+.lp{font-size:12.5px;font-weight:650;min-width:42px;text-align:right}
+.areas{margin-top:16px}
+.areas .sph{margin-bottom:10px}
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.acard{display:flex;flex-direction:column;gap:10px;text-align:left;font:inherit;color:inherit;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:var(--card);cursor:pointer;box-shadow:0 1px 2px rgba(20,30,50,.05);transition:transform .15s,box-shadow .15s,border-color .15s}
+.acard:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(20,30,50,.09);border-color:var(--brand)}
+.ach{display:flex;align-items:center;gap:8px}.ach b{font-size:13.5px;font-weight:650;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ach .ric{width:26px;height:26px;border-radius:8px;background:var(--brand-soft);color:var(--brand-ink);display:grid;place-items:center}
+.ach em{font-style:normal;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8F6110;background:#FBEDC8;padding:2px 6px;border-radius:6px}
+.acb{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.acn{font-size:26px;font-weight:720;letter-spacing:-.02em;line-height:1}.acn small{font-size:14px;color:var(--muted);font-weight:600}
+.acs{font-size:12px;color:var(--muted);margin-top:4px}
+.spk{width:120px;height:34px;flex:none}
+.acf{font-size:12.5px;color:var(--sbtx);display:flex;gap:6px;align-items:center;border-top:1px dashed var(--line);padding-top:8px}
+@media (max-width:1100px){.sum2.b{grid-template-columns:1fr}}
+@media (max-width:760px){.kstrip{grid-template-columns:1fr 1fr}.kt{padding:12px}.kti{width:34px;height:34px}.ktx b{font-size:21px}.agrid{grid-template-columns:1fr}}
+
+.acs .dup,.acs .ddn{font-size:11.5px;margin-left:4px}
+.acf i{width:6px;height:6px;border-radius:50%;background:var(--brand);flex:none}
+.agrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.acard.golive{cursor:default;background:linear-gradient(135deg,var(--brand-soft),var(--card));border-style:dashed}
+.acard.golive:hover{transform:none;box-shadow:none;border-color:var(--line)}
+.mdue .mdr{width:100%;display:grid;grid-template-columns:minmax(0,170px) minmax(0,1fr) 30px;gap:10px;align-items:center;border:0;background:transparent;font:inherit;font-size:13px;color:var(--sbtx);padding:4px 0;cursor:pointer;text-align:left}
+.mdue .mdr span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mdt{height:8px;border-radius:99px;background:var(--track);overflow:hidden}.mdt i{display:block;height:100%;background:var(--wait-s);border-radius:99px}
+.mdue .mdr b{text-align:right;color:var(--ink)}
+.mdue .mdr:hover span:first-child{color:var(--brand-ink)}
+@media (max-width:1300px){.agrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:760px){.agrid{grid-template-columns:1fr}}
+
+.sum2>*{min-width:0}.lreq li button,.lt{min-width:0;max-width:100%}.lt{width:100%}
+@media (max-width:760px){.alist li .atx{flex-basis:calc(100% - 42px)}.alist li .btn{margin-left:42px}.atx span{white-space:normal}.lt b{white-space:normal}}
 </style>
 </head>
 <body>
@@ -1074,7 +1127,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
 </div>
 
 <script src="firebase-config.js"></script>
-<script src="live.js?v=75"></script>
+<script src="live.js?v=76"></script>
 <script>
 (function () {
   'use strict';
@@ -1957,6 +2010,48 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
       '<div class="mleg">' + bits.filter(function (b) { return b[2] && b[1] !== 'done'; }).map(function (b) {
         return '<button type="button" data-sgo="' + go(b[3]) + '"><i style="background:var(' + b[0] + ')"></i>' + b[2] + ' ' + b[1] + '</button>'; }).join('') + (n && t.completed === n ? '<span class="mok">✓ All done</span>' : '') + (!n ? '<span class="mden">Nothing to track this month</span>' : '') + '</div></div>';
   }
+  function spark(vals, col) {
+    var W = 120, H = 34, lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals); if (hi === lo) { hi += 1; lo -= 1; }
+    var x = function (i) { return 2 + i * (W - 4) / Math.max(1, vals.length - 1); }, y = function (v) { return H - 3 - (v - lo) / (hi - lo) * (H - 6); };
+    var d = vals.map(function (v, i) { return (i ? 'L' : 'M') + x(i).toFixed(1) + ' ' + y(v).toFixed(1); }).join(' ');
+    return '<svg class="spk" viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true"><path d="' + d + ' L' + x(vals.length - 1).toFixed(1) + ' ' + H + ' L2 ' + H + 'Z" fill="' + col + '" opacity=".12"/><path d="' + d + '" fill="none" stroke="' + col + '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="' + x(vals.length - 1).toFixed(1) + '" cy="' + y(vals[vals.length - 1]).toFixed(1) + '" r="3" fill="' + col + '"/></svg>';
+  }
+  /* one card per new area: the headline figure, a 6-step trend and one line that says what to look at */
+  function areaCard(t) {
+    try {
+      var ms = sampleMonths(), cur = ms[ms.length - 1].id, rows, vals, big, sub, note, col = 'var(--brand)', cnt = function (f) { return rows.filter(f).length; };
+      var S = function (a, k) { return a.reduce(function (x, r) { return x + (r[k] || 0); }, 0); }, A = function (a, k) { return a.length ? S(a, k) / a.length : 0; };
+      if (t === 'ai') {
+        var am = aiModel(), wk = aiWeeks().map(function (w) { return w.id; });
+        vals = wk.slice(-6).map(function (w) { return aiNumbers(am, [w]).reduce(function (x, r) { return x + r.saved; }, 0); });
+        var tot = aiNumbers(am, wk).reduce(function (x, r) { return x + r.saved; }, 0);
+        big = nfmt(tot) + '<small> h saved</small>'; sub = 'last 8 weeks'; note = am.accounts.filter(function (a) { return a.on; }).length + ' of ' + am.accounts.length + ' accounts use AI';
+      } else {
+        rows = sampleData(t, cur);
+        var tr = function (fn) { return ms.map(function (m) { return fn(sampleData(t, m.id)); }); };
+        if (t === 'util') { vals = tr(function (a) { var v = S(a, 'avail'); return v ? 100 * S(a, 'logged') / v : 0; }); big = Math.round(vals[5]) + '<small>%</small>'; sub = 'utilization this month'; note = cnt(function (r) { return r.util > 100; }) + ' people over 100%'; }
+        if (t === 'proj') { vals = tr(function (a) { return A(a, 'util'); }); big = Math.round(vals[5]) + '<small>%</small>'; sub = 'actual vs planned hours'; note = cnt(function (r) { return r.util > 105; }) + ' projects over-allocated'; col = '#C98A1B'; }
+        if (t === 'goals') { vals = tr(function (a) { return a.length ? 100 * a.filter(function (r) { return r.status !== 'At risk'; }).length / a.length : 0; }); big = Math.round(vals[5]) + '<small>%</small>'; sub = 'of goals on track'; note = cnt(function (r) { return r.status === 'At risk'; }) + ' goals at risk'; col = 'var(--done-s)'; }
+        if (t === 'csat') { vals = tr(function (a) { return A(a, 'score'); }); big = vals[5].toFixed(1) + '<small> / 5</small>'; sub = 'client satisfaction'; note = cnt(function (r) { return r.score < 3.8; }) + ' accounts need a follow-up'; col = '#6A4BB4'; }
+        if (t === 'esat') { vals = tr(function (a) { return A(a, 'score'); }); big = vals[5].toFixed(1) + '<small> / 5</small>'; sub = 'employee satisfaction'; note = cnt(function (r) { return r.score < 3.8; }) + ' teams need a 1:1'; col = '#B25618'; }
+        if (t === 'growth') { vals = tr(function (a) { return S(a.filter(function (r) { return r.stage !== 'Won' && r.stage !== 'Lost'; }), 'value') / 1000; }); big = '$' + nfmt(vals[5]) + '<small>k</small>'; sub = 'open pipeline / year'; note = cnt(function (r) { return r.stage !== 'Won' && r.stage !== 'Lost'; }) + ' open opportunities'; col = 'var(--done-s)'; }
+      }
+      var d = vals[vals.length - 1] - vals[vals.length - 2], dp = (t === 'csat' || t === 'esat') ? 1 : 0, dv = Math.abs(d).toFixed(dp);
+      var SHORT = { ai: 'AI efficiency', util: 'Team utilization', proj: 'Project utilization', goals: 'Organic goals', csat: 'CSAT', esat: 'ESAT', growth: 'Organic growth' };
+      return '<button type="button" class="acard" data-tab="' + t + '"><div class="ach"><span class="ric">' + NAVICON[t] + '</span><b>' + esc(SHORT[t]) + '</b><em>sample</em></div>' +
+        '<div class="acb"><div><div class="acn">' + big + '</div><div class="acs">' + esc(sub) + (Number(dv) ? ' <span class="' + (d > 0 ? 'dup' : 'ddn') + '">' + (d > 0 ? '▲' : '▼') + ' ' + dv + '</span>' : '') + '</div></div>' + spark(vals, col) + '</div>' +
+        '<div class="acf"><i></i>' + esc(note) + '</div></button>';
+    } catch (e) { return ''; }
+  }
+  function mostDue() {   // the team leads with the most 1:1s still open this month
+    var rows = ((state.sumDim || {}).oneonone || {}).rows || [], by = {};
+    rows.forEach(function (r) { if (r.status === 'Due' || r.status === 'Overdue') by[r.tlName] = (by[r.tlName] || 0) + 1; });
+    var top = Object.keys(by).sort(function (a, b) { return by[b] - by[a]; }).slice(0, 4);
+    if (!top.length) return '';
+    var mx = by[top[0]];
+    return '<div class="mtg mdue"><div class="mtop"><b style="font-size:13.5px">Most 1:1s still open</b><span class="mden">by team lead</span></div>' + top.map(function (k) {
+      return '<button type="button" class="mdr" data-sgo="one:due"><span>' + esc(k) + '</span><span class="mdt"><i style="width:' + (100 * by[k] / mx).toFixed(0) + '%"></i></span><b>' + by[k] + '</b></button>'; }).join('') + '</div>';
+  }
   function renderSummary() {
     var d = state.raw || state.data, tabs = navTabs(d), hasSla = tabs.indexOf('sla') !== -1, hasOne = tabs.indexOf('one') !== -1, hasCl = tabs.indexOf('client') !== -1;
     var reqs = d.initiatives || [], a = [];
@@ -1972,7 +2067,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
         : '<div class="empty">No requests to track yet.</div>') + '</section>';
     var mlabel = ((state.sumDim || {}).oneonone || (state.sumDim || {}).client || {}).monthLabel || '';
     var right = !(hasOne || hasCl) ? '' : '<section class="spanel"><div class="sph"><h3>Monthly meetings</h3><span class="hint">' + esc(mlabel) + '</span></div>' +
-      (hasOne ? meetRow('oneonone', 'one', 'Internal 1:1') : '') + (hasCl ? meetRow('client', 'client', 'Client 1:1') : '') + '</section>';
+      (hasOne ? meetRow('oneonone', 'one', 'Internal 1:1') : '') + (hasCl ? meetRow('client', 'client', 'Client 1:1') : '') + mostDue() + '</section>';
     // needs attention: what a lead can act on now, with the next step
     var att = [];
     if (hasSla && c.late) {
@@ -1993,8 +2088,29 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     }).join('') + '</ul>' : '<div class="aok">✓ Nothing needs your attention right now.</div>') + '</section>';
     var road = '<section class="road"><span class="rlab">More areas</span>' + SOON_TABS.map(function (t) {
       var hl = sampleHeadline(t); return '<button type="button" data-tab="' + t + '"><span class="ric">' + NAVICON[t] + '</span>' + esc(TABNAME[t]) + (hl ? '<em>' + esc(hl) + '</em>' : '') + '</button>'; }).join('') + '<span class="rnote">Sample figures until Google Cloud is connected</span></section>';
-    $('#dimView').innerHTML = '<div class="sumhead"><div class="kicker">' + esc(new Date().toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })) + '</div><h2>Hi ' + esc(meName().split(' ')[0]) + ', here is where things stand</h2></div>' +
-      '<div class="sum2' + (left && right ? '' : ' one') + '">' + left + right + '</div>' + attHtml + road;
+    // the strip of headline numbers
+    var ones = (state.sumDim || {}).oneonone || {}, cls = (state.sumDim || {}).client || {}, ot = ones.totals || {}, ct = cls.totals || {};
+    var now = new Date(), endM = new Date(now.getFullYear(), now.getMonth() + 1, 0), daysLeft = Math.max(0, endM.getDate() - now.getDate());
+    var kt = function (cls2, ic, n, l, sub, go) { return '<button type="button" class="kt ' + cls2 + '"' + (go ? ' data-sgo="' + go + '"' : '') + '><span class="kti">' + ic + '</span><span class="ktx"><b>' + n + '</b><span>' + l + '</span><em>' + sub + '</em></span></button>'; };
+    var strip = '<div class="kstrip">' +
+      (hasSla ? kt('k1', '✓', (c.total ? Math.round(100 * c.done / c.total) : 0) + '%', 'Chat responses done', c.done + ' of ' + c.total + ' · ' + reqs.length + ' requests', 'sla:') : '') +
+      (hasSla ? kt('k2', '!', c.late, 'Late responses', 'over 48 hours, not answered', 'sla:late') : '') +
+      (hasOne ? kt('k3', NAVICON.one, (ot.completed || 0) + '<small>/' + (ot.total || 0) + '</small>', 'Internal 1:1s done', (ot.due || 0) + ' still due', 'one:') : '') +
+      (hasCl ? kt('k4', NAVICON.client, (ct.completed || 0) + '<small>/' + (ct.total || 0) + '</small>', 'Client calls done', (ct.due || 0) + ' still to do', 'client:') : '') +
+      kt('k5', '⏱', daysLeft, daysLeft === 1 ? 'Day left this month' : 'Days left this month', 'month closes ' + endM.toLocaleDateString([], { day: 'numeric', month: 'short' }), '') + '</div>';
+    // the newest requests, with how far each one is
+    var latest = reqs.slice().sort(function (x, y) { return String(y.createdAt || '').localeCompare(String(x.createdAt || '')); }).slice(0, 5);
+    var lrq = !hasSla ? '' : '<section class="spanel"><div class="sph"><h3>Latest requests</h3><button type="button" class="slink" data-sgo="sla:">All requests →</button></div>' + (latest.length ? '<ul class="lreq">' + latest.map(function (i) {
+      var t2 = tally(i.leads || []), p2 = t2.total ? Math.round(100 * t2.done / t2.total) : 0, gn = groupNameOf(i.spaceId);
+      var bar = ['done', 'prog', 'wait', 'late', 'unk'].map(function (k) { return t2[k] ? '<i style="width:' + (100 * t2[k] / (t2.total || 1)).toFixed(1) + '%;background:var(' + SCOL[k][0] + ')"></i>' : ''; }).join('');
+      return '<li><button type="button" data-sgo="sla:"><div class="lt"><b>' + esc(String(i.title || '').substring(0, 90)) + '</b><span>' + esc(i.requester || '') + (gn ? ' · ' + esc(gn) : '') + (i.createdAt ? ' · ' + esc(fmt(i.createdAt)) : '') + '</span></div>' +
+        '<div class="lb"><span class="mtrack sm">' + bar + '</span><span class="lp">' + t2.done + '/' + t2.total + '</span>' + (t2.late ? '<span class="spill bad">' + t2.late + ' late</span>' : (t2.total && t2.done === t2.total ? '<span class="spill good">done</span>' : '')) + '</div></button></li>';
+    }).join('') + '</ul>' : '<div class="empty">No requests yet.</div>') + '</section>';
+    var areas = '<section class="areas"><div class="sph"><h3>Performance areas</h3><span class="spill warn">Sample figures until Google Cloud is connected</span></div><div class="agrid">' + SOON_TABS.map(areaCard).join('') +
+      '<div class="acard golive"><div class="ach"><span class="ric">☁</span><b>Going live</b></div><div class="acs" style="font-size:13px;line-height:1.5;color:var(--sbtx)">These seven areas switch from sample to real numbers once read-only Google Cloud (Keka) access is approved. Each team lead will see only their own team.</div><div class="acf"><i></i>0 of 7 connected</div></div></div></section>';
+    $('#dimView').innerHTML = '<div class="sumhero"><div><div class="kicker">' + esc(now.toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })) + '</div><h2>Hi ' + esc(meName().split(' ')[0]) + ', here is where things stand</h2></div></div>' + strip +
+      '<div class="sum2' + (left && right ? '' : ' one') + '">' + left + right + '</div>' +
+      '<div class="sum2 b">' + attHtml + lrq + '</div>' + areas;
   }
 
   /* ---------- The seven new areas: SAMPLE data built from your real teams and accounts (every number is made up) ----------
