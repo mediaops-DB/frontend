@@ -3,7 +3,7 @@
 <head>
 <base target="_top">
 <meta charset="utf-8">
-<!-- UI_VERSION=76 -->
+<!-- UI_VERSION=77 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Leads Intelligence Suite</title>
 <style>
@@ -1037,6 +1037,28 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
 
 .sum2>*{min-width:0}.lreq li button,.lt{min-width:0;max-width:100%}.lt{width:100%}
 @media (max-width:760px){.alist li .atx{flex-basis:calc(100% - 42px)}.alist li .btn{margin-left:42px}.atx span{white-space:normal}.lt b{white-space:normal}}
+
+/* ---------- v77: lead score ---------- */
+.aiks.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.aik .n small{font-size:14px;color:var(--muted);font-weight:600}
+.howl{list-style:none;margin:0;padding:0}
+.howl li{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line);font-size:13.5px}
+.howl li:first-child{border-top:0}.howl li span:not(.spill):not(.hw){display:block;font-size:12px;color:var(--muted)}
+.howl .spill{font-size:10.5px;padding:1px 7px;margin-left:4px}
+.hw{flex:none;width:44px;height:28px;border-radius:8px;background:var(--brand-soft);color:var(--brand-ink);display:grid;place-items:center;font-weight:700;font-size:13px}
+.scn{display:inline-grid;place-items:center;min-width:46px;height:30px;border-radius:9px;font-weight:750;font-size:15px}
+.scn.good{background:var(--done-bg);color:var(--done)}.scn.warn{background:var(--wait-bg);color:var(--wait)}.scn.bad{background:var(--late-bg);color:var(--late)}
+.scb{display:inline-flex;align-items:flex-end;gap:3px;height:28px}
+.scb i{display:block;width:9px;border-radius:3px 3px 0 0}.scb i.good{background:var(--done-s)}.scb i.warn{background:var(--wait-s)}.scb i.bad{background:var(--late-s)}.scb i.na{background:var(--track)}
+td.rk{color:var(--muted);font-weight:650;width:36px}
+.scd{list-style:none;margin:0;padding:4px 0}
+.scd li{display:grid;grid-template-columns:200px 160px 40px 1fr;gap:12px;align-items:center;padding:5px 0;font-size:13px}
+.scd li em{font-style:normal;font-size:10.5px;color:#8F6110;background:#FBEDC8;padding:1px 5px;border-radius:5px}
+.scd .pbar{width:150px}.scd .sx{color:var(--muted);font-size:12.5px}
+.acard.sc{background:linear-gradient(135deg,var(--brand-soft),var(--card))}
+.ach em.pt{color:var(--brand-ink);background:#fff}
+.sctop{font-size:12px;color:var(--sbtx);text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2px}.sctop b{font-size:18px;color:var(--done)}
+@media (max-width:760px){.aiks.four{grid-template-columns:1fr 1fr}.scd li{grid-template-columns:1fr auto}.scd .pbar,.scd .sx{display:none}}
 </style>
 </head>
 <body>
@@ -1127,7 +1149,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
 </div>
 
 <script src="firebase-config.js"></script>
-<script src="demo.js?v=76"></script>
+<script src="demo.js?v=77"></script>
 <script>
 (function () {
   'use strict';
@@ -1254,6 +1276,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     sla: ['Chat requests', 'Who has responded to the requests posted in Leads - Media'],
     one: ['Internal monthly 1:1', 'Monthly 1:1 meetings, recorded by the team lead above each person'],
     client: ['Client 1:1', 'Monthly client feedback calls. Visible only to the account owner, people with access and the admin'],
+    score: ['Lead score', 'One score per team lead: how responsive the team is, 1:1s, client calls, utilization, AI adoption and ESAT'],
     summary: ['Summary', 'Everything at a glance. Click a chart, a bar or an item to see the details'],
     ai: ['AI efficiency', 'How much the teams use AI, and the time it saves'],
     util: ['Team utilization / billability', 'Logged, billable and bench hours for every team member'],
@@ -1935,6 +1958,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
   function dpill(s) { return '<span class="pill ' + DCLS[s] + '"><span aria-hidden="true">' + DICO[s] + '</span>' + DLAB[s] + '</span>'; }
 
   var NAVICON = {
+    score: '<svg viewBox="0 0 24 24"><path d="M4.5 19.5h15"/><rect x="5.5" y="11" width="3.4" height="8.5" rx="1"/><rect x="10.3" y="6" width="3.4" height="13.5" rx="1"/><rect x="15.1" y="13.5" width="3.4" height="6" rx="1"/><path d="M12 2.8l.7 1.4 1.5.2-1.1 1 .3 1.5-1.4-.7-1.4.7.3-1.5-1.1-1 1.5-.2z"/></svg>',
     summary: '<svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6"/></svg>',
     sla: '<svg viewBox="0 0 24 24"><path d="M4 5.5h16v10.5H9.5L5 19.5V16H4z"/></svg>',
     one: '<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.2c2.4.2 4 1.7 4.5 4.3"/></svg>',
@@ -1949,12 +1973,13 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     ops: '<svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>',
     copilot: '<svg viewBox="0 0 24 24"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 3.5V17A2.5 2.5 0 0 1 4 14.5z"/><path d="M12 7.3l.9 2.2 2.2.9-2.2.9-.9 2.2-.9-2.2-2.2-.9 2.2-.9z"/></svg>'
   };
-  var TABNAME = { summary: 'Summary', sla: 'Chat requests', one: 'Internal 1:1', client: 'Client 1:1', ai: 'AI efficiency', util: 'Team utilization', proj: 'Project utilization', goals: 'Organic goals', growth: 'Organic growth opportunities', csat: 'CSAT (client satisfaction)', esat: 'ESAT (employee satisfaction)', ops: 'Ops mailbox', copilot: 'Copilot' };
+  var TABNAME = { summary: 'Summary', score: 'Lead score', sla: 'Chat requests', one: 'Internal 1:1', client: 'Client 1:1', ai: 'AI efficiency', util: 'Team utilization', proj: 'Project utilization', goals: 'Organic goals', growth: 'Organic growth opportunities', csat: 'CSAT (client satisfaction)', esat: 'ESAT (employee satisfaction)', ops: 'Ops mailbox', copilot: 'Copilot' };
   /* every tab, in order: the ones the server allows this person (Chat requests, 1:1, client, ops mailbox) plus Summary, the coming metrics and Copilot */
   var SOON_TABS = ['ai', 'util', 'proj', 'goals', 'csat', 'esat', 'growth'];
   function navTabs(d) {
     var srv = (d && d.user && d.user.tabs) || ['sla'], out = ['summary'];
     ['sla', 'one', 'client'].forEach(function (t) { if (srv.indexOf(t) !== -1) out.push(t); });
+    out.push('score');
     if (srv.indexOf('ops') !== -1) out.push('ops');
     return out.concat(SOON_TABS);
   }
@@ -2052,6 +2077,13 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     return '<div class="mtg mdue"><div class="mtop"><b style="font-size:13.5px">Most 1:1s still open</b><span class="mden">by team lead</span></div>' + top.map(function (k) {
       return '<button type="button" class="mdr" data-sgo="one:due"><span>' + esc(k) + '</span><span class="mdt"><i style="width:' + (100 * by[k] / mx).toFixed(0) + '%"></i></span><b>' + by[k] + '</b></button>'; }).join('') + '</div>';
   }
+  function scoreCard() {
+    var all = scoreModel(); if (!all.length) return '';
+    var avg = Math.round(all.reduce(function (a, L) { return a + L.score; }, 0) / all.length), need = all.filter(function (L) { return L.band === 'Needs support'; }).length;
+    return '<button type="button" class="acard sc" data-tab="score"><div class="ach"><span class="ric">' + NAVICON.score + '</span><b>Lead score</b><em class="pt">part live</em></div>' +
+      '<div class="acb"><div><div class="acn">' + avg + '<small> / 100</small></div><div class="acs">average across ' + all.length + ' leads</div></div><span class="sctop">🏆 ' + esc(all[0].name) + '<b>' + all[0].score + '</b></span></div>' +
+      '<div class="acf"><i></i>' + need + ' lead' + (need === 1 ? '' : 's') + ' need support</div></button>';
+  }
   function renderSummary() {
     var d = state.raw || state.data, tabs = navTabs(d), hasSla = tabs.indexOf('sla') !== -1, hasOne = tabs.indexOf('one') !== -1, hasCl = tabs.indexOf('client') !== -1;
     var reqs = d.initiatives || [], a = [];
@@ -2081,8 +2113,8 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     if (one && one.due) att.push(['wait', '…', '<b>' + one.due + '</b> internal 1:1' + (one.due === 1 ? '' : 's') + ' still to do', dueTxt, 'Open 1:1s due', 'one:due']);
     if (cl && cl.due) att.push(['wait', '…', '<b>' + cl.due + '</b> client call' + (cl.due === 1 ? '' : 's') + ' still to do', dueTxt, 'Open client calls', 'client:Due']);
     if (hasSla && c.unk) att.push(['unk', I_LINKOFF, '<b>' + c.unk + '</b> chat response' + (c.unk === 1 ? '' : 's') + ' can’t be checked', 'The linked sheet or form cannot be read. Give access or attach the tracker', 'See which ones', 'sla:unk']);
-    if (one && one.notVerified) att.push(['unk', I_DOC, '<b>' + one.notVerified + '</b> 1:1' + (one.notVerified === 1 ? '' : 's') + ' need proof', 'Marked done, but no Keka link yet', 'Add the proof', 'one:proof']);
-    if (cl && cl.notVerified) att.push(['unk', I_DOC, '<b>' + cl.notVerified + '</b> client call' + (cl.notVerified === 1 ? '' : 's') + ' need proof', 'Marked held, but no transcript yet', 'Add the transcript', 'client:Not verified']);
+    if (one && one.notVerified) att.push(['unk', I_DOC, '<b>' + one.notVerified + '</b> 1:1' + (one.notVerified === 1 ? '' : 's') + ' need proof', 'Marked done, not yet confirmed in Keka', 'See them', 'one:proof']);
+    if (cl && cl.notVerified) att.push(['unk', I_DOC, '<b>' + cl.notVerified + '</b> client call' + (cl.notVerified === 1 ? '' : 's') + ' need proof', 'Marked held, but the call notes were not emailed yet', 'See them', 'client:Not verified']);
     var attHtml = '<section class="spanel attn"><div class="sph"><h3>Needs attention</h3></div>' + (att.length ? '<ul class="alist">' + att.slice(0, 6).map(function (x) {
       return '<li class="a-' + x[0] + '"><span class="aico">' + x[1] + '</span><div class="atx"><div>' + x[2] + '</div><span>' + x[3] + '</span></div><button type="button" class="btn sm" data-sgo="' + x[5] + '">' + x[4] + ' →</button></li>';
     }).join('') + '</ul>' : '<div class="aok">✓ Nothing needs your attention right now.</div>') + '</section>';
@@ -2107,7 +2139,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
         '<div class="lb"><span class="mtrack sm">' + bar + '</span><span class="lp">' + t2.done + '/' + t2.total + '</span>' + (t2.late ? '<span class="spill bad">' + t2.late + ' late</span>' : (t2.total && t2.done === t2.total ? '<span class="spill good">done</span>' : '')) + '</div></button></li>';
     }).join('') + '</ul>' : '<div class="empty">No requests yet.</div>') + '</section>';
     var areas = '<section class="areas"><div class="sph"><h3>Performance areas</h3><span class="spill warn">Sample figures until Google Cloud is connected</span></div><div class="agrid">' + SOON_TABS.map(areaCard).join('') +
-      '<div class="acard golive"><div class="ach"><span class="ric">☁</span><b>Going live</b></div><div class="acs" style="font-size:13px;line-height:1.5;color:var(--sbtx)">These seven areas switch from sample to real numbers once read-only Google Cloud (Keka) access is approved. Each team lead will see only their own team.</div><div class="acf"><i></i>0 of 7 connected</div></div></div></section>';
+      scoreCard() + '</div></section>';
     $('#dimView').innerHTML = '<div class="sumhero"><div><div class="kicker">' + esc(now.toLocaleDateString([], { weekday: 'long', day: 'numeric', month: 'long' })) + '</div><h2>Hi ' + esc(meName().split(' ')[0]) + ', here is where things stand</h2></div></div>' + strip +
       '<div class="sum2' + (left && right ? '' : ' one') + '">' + left + right + '</div>' +
       '<div class="sum2 b">' + attHtml + lrq + '</div>' + areas;
@@ -2117,7 +2149,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
      The names come from what this person can already see (their 1:1 teams and client accounts), so nobody sees more than before.
      When Google Cloud is connected, only sampleData() is replaced by the real numbers; the pages, charts and filters stay. */
   var SOON = {
-    ai: { by: 'team', label: 'AI efficiency' }, util: { by: 'person', label: 'Team utilization' }, proj: { by: 'account', label: 'Project utilization' },
+    score: { by: 'team', label: 'Lead score' }, ai: { by: 'team', label: 'AI efficiency' }, util: { by: 'person', label: 'Team utilization' }, proj: { by: 'account', label: 'Project utilization' },
     goals: { by: 'team', label: 'Organic goals' }, csat: { by: 'account', label: 'CSAT' }, esat: { by: 'team', label: 'ESAT' }, growth: { by: 'account', label: 'Organic growth' }
   };
   function srand(key) {   // the same name and month always give the same number
@@ -2465,6 +2497,66 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     return '<div class="samplebar"><span class="sbadge">SAMPLE DATA</span><span>Names are your real accounts and people; <b>every number here is made up</b> to show how this page works. Real numbers will come from Google Cloud.</span></div>' + ctl + overall + savings + agents;
   }
 
+  /* ---------- Lead score: one number per team lead, from what is real today plus (until Keka is connected) sample parts ---------- */
+  var SCORE_PARTS = [
+    { k: 'resp', l: 'Chat responsiveness', w: 25, real: true, d: 'share of chat requests answered' },
+    { k: 'one', l: 'Internal 1:1s', w: 20, real: true, d: 'share of the team’s 1:1s done this month (from Keka)' },
+    { k: 'client', l: 'Client 1:1s', w: 15, real: true, d: 'share of their accounts’ client calls done (emailed to the Media Ops mailbox)' },
+    { k: 'util', l: 'Team utilization', w: 15, real: false, d: 'team utilization close to 90–100% (Keka)' },
+    { k: 'ai', l: 'AI adoption', w: 10, real: false, d: 'share of the team using AI (Keka)' },
+    { k: 'esat', l: 'Team ESAT', w: 15, real: false, d: 'the team’s satisfaction score (Keka)' }
+  ];
+  function scoreModel() {
+    var sd = state.sumDim || {}, one = (sd.oneonone || {}).rows || [], cl = (sd.client || {}).rows || [], leads = {};
+    var key = function (email, name) { var k = String(email || '').toLowerCase() || normKey(name); if (!leads[k]) leads[k] = { key: k, name: name || humanName(email), email: email || '', parts: {}, raw: {} }; else if (name && !leads[k].name) leads[k].name = name; return leads[k]; };
+    var normKey = function (n) { return 'n:' + String(n || '').toLowerCase().replace(/\s+/g, ' ').trim(); };
+    var add = function (L, k, done, tot) { L.raw[k] = L.raw[k] || { d: 0, t: 0 }; L.raw[k].d += done; L.raw[k].t += tot; };
+    ((state.raw || state.data || {}).initiatives || []).forEach(function (i) { (i.leads || []).forEach(function (l) { var s = disp(l); if (s === 'unk' || s === 'exc') return; add(key(l.email, l.name), 'resp', s === 'done' ? 1 : 0, 1); }); });
+    one.forEach(function (r) { if (!r.tlEmail && !r.tlName) return; if (r.status === 'Exception' || r.status === 'Excused') return; add(key(r.tlEmail, r.tlName), 'one', r.status === 'Completed' ? 1 : 0, 1); });
+    cl.forEach(function (r) { if (!r.ownerEmail && !r.ownerName) return; if (r.status === 'Exception' || r.status === 'Excused') return; add(key(r.ownerEmail, r.ownerName), 'client', r.status === 'Completed' ? 1 : 0, 1); });
+    var ms = sampleMonths(), cur = ms[ms.length - 1].id, util = sampleData('util', cur), ai = sampleData('ai', cur), es = sampleData('esat', cur);
+    var list = Object.keys(leads).map(function (k) { return leads[k]; });
+    var withTeam = list.filter(function (L) { return L.raw.one; });   // the score is for team leads: people with a team of their own
+    list = withTeam.length ? withTeam : list.filter(function (L) { return L.raw.resp || L.raw.client; });
+    list.forEach(function (L) {
+      ['resp', 'one', 'client'].forEach(function (k) { if (L.raw[k] && L.raw[k].t) L.parts[k] = Math.round(100 * L.raw[k].d / L.raw[k].t); });
+      var u = util.filter(function (r) { return r.tl === L.name; }); if (u.length) { var uv = u.reduce(function (a, r) { return a + r.util; }, 0) / u.length; L.raw.utilPct = Math.round(uv); L.parts.util = Math.round(Math.max(0, uv > 100 ? 100 - (uv - 100) * 3 : Math.min(100, uv / 0.9))); }
+      var a = ai.filter(function (r) { return r.tl === L.name; })[0]; if (a) L.parts.ai = a.adopt;
+      var e = es.filter(function (r) { return r.tl === L.name; })[0]; if (e) { L.raw.esat = e.score; L.parts.esat = Math.round(e.score / 5 * 100); }
+      var sw = 0, sv = 0; SCORE_PARTS.forEach(function (p) { if (L.parts[p.k] != null) { sw += p.w; sv += p.w * L.parts[p.k]; } });
+      L.score = sw ? Math.round(sv / sw) : 0; L.band = L.score >= 80 ? 'Strong' : (L.score >= 60 ? 'Steady' : 'Needs support');
+    });
+    return list.sort(function (a, b) { return b.score - a.score || String(a.name).localeCompare(String(b.name)); });
+  }
+  function scorePage() {
+    var all = scoreModel(), q = String(state.scQ || '').toLowerCase(), bf = state.scBand || '';
+    var rows = all.filter(function (L) { return (!q || L.name.toLowerCase().indexOf(q) !== -1) && (!bf || L.band === bf); });
+    var avg = all.length ? Math.round(all.reduce(function (a, L) { return a + L.score; }, 0) / all.length) : 0;
+    var band = function (b) { return { Strong: 'good', Steady: 'warn', 'Needs support': 'bad' }[b]; };
+    var tile = function (l, v, sub, cls) { return '<div class="aik' + (cls ? ' ' + cls : '') + '"><div class="l">' + l + '</div><div class="n">' + v + '</div><div class="d">' + sub + '</div></div>'; };
+    var cnt = function (b) { return all.filter(function (L) { return L.band === b; }).length; };
+    var head = '<section class="aisec"><div class="aihd"><h3>Overall</h3></div><div class="aiks four">' + tile('Average lead score', avg + '<small>/100</small>', all.length + ' team leads', avg >= 80 ? 'good' : '') +
+      tile('Top score', all.length ? all[0].score : '—', all.length ? esc(all[0].name) : '') + tile('Strong (80+)', cnt('Strong'), 'leads doing well across the board', 'good') + tile('Need support (below 60)', cnt('Needs support'), 'leads to help first') + '</div></section>';
+    var donutHtml = chDonut([{ l: 'Strong', v: cnt('Strong'), c: 'var(--done-s)' }, { l: 'Steady', v: cnt('Steady'), c: 'var(--wait-s)' }, { l: 'Needs support', v: cnt('Needs support'), c: 'var(--late-s)' }], avg, 'average').replace(/data-sfilter=/g, 'data-scband=');
+    var how = '<section class="spanel"><div class="sph"><h3>How the score is made</h3><span class="hint">out of 100</span></div><ul class="howl">' + SCORE_PARTS.map(function (p) {
+      return '<li><span class="hw">' + p.w + '%</span><div><b>' + esc(p.l) + '</b> ' + (p.real ? '<span class="spill good">live</span>' : '<span class="spill warn">sample until Keka</span>') + '<span>' + esc(p.d) + '</span></div></li>'; }).join('') +
+      '</ul><p class="hint" style="margin-top:8px">When a part does not apply to a lead (for example no client accounts), the other parts count proportionally.</p></section>';
+    var chart = '<div class="sgrid2"><section class="spanel"><div class="sph"><h3>Leads by band</h3><span class="hint">click to filter</span></div>' + donutHtml + '</section>' + how + '</div>';
+    var bars = function (L) { return '<span class="scb">' + SCORE_PARTS.map(function (p) { var v = L.parts[p.k]; return '<i title="' + esc(p.l + ': ' + (v == null ? 'n/a' : v)) + '" class="' + (v == null ? 'na' : (v >= 80 ? 'good' : (v >= 60 ? 'warn' : 'bad'))) + '" style="height:' + (v == null ? 4 : Math.max(6, v * 0.26)) + 'px"></i>'; }).join('') + '</span>'; };
+    var open = state.scOpen || {};
+    var table = '<section class="panel reqs"><div class="phead"><h3>Leaderboard</h3><span class="hint">' + rows.length + ' of ' + all.length + ' · click a lead to see the breakdown</span>' + (bf ? '<span class="fsel">Showing only <b>' + esc(bf) + '</b> <button type="button" class="freset" data-scband="">Reset ✕</button></span>' : '') + '</div>' +
+      '<div class="stw"><table class="stab"><thead><tr><th>#</th><th>Team lead</th><th class="r">Score</th><th>Parts</th><th>Band</th></tr></thead><tbody>' +
+      (rows.length ? rows.map(function (L) {
+        var rank = all.indexOf(L) + 1, op = !!open[L.key];
+        var det = op ? '<tr class="agx"><td colspan="5"><ul class="scd">' + SCORE_PARTS.map(function (p) {
+          var v = L.parts[p.k], raw = L.raw[p.k], extra = raw && raw.t ? raw.d + ' of ' + raw.t : (p.k === 'util' && L.raw.utilPct != null ? L.raw.utilPct + '% utilized' : (p.k === 'esat' && L.raw.esat ? L.raw.esat.toFixed(1) + ' / 5' : (p.k === 'ai' && v != null ? v + '% of the team' : '')));
+          return '<li><span>' + esc(p.l) + (p.real ? '' : ' <em>sample</em>') + '</span><span class="pbar"><i class="' + (v == null ? '' : (v >= 80 ? 'good' : (v >= 60 ? 'warn' : 'bad'))) + '" style="width:' + (v || 0) + '%"></i></span><b>' + (v == null ? 'n/a' : v) + '</b><span class="sx">' + esc(extra) + '</span></li>'; }).join('') + '</ul></td></tr>' : '';
+        return '<tr class="agrow' + (op ? ' open' : '') + '" data-scopen="' + esc(L.key) + '"><td class="rk">' + rank + '</td><td><span class="chev">' + (op ? '▾' : '▸') + '</span> <b>' + esc(L.name) + '</b></td><td class="r"><span class="scn ' + band(L.band) + '">' + L.score + '</span></td><td>' + bars(L) + '</td><td>' + spill(band(L.band), L.band) + '</td></tr>' + det;
+      }).join('') : '<tr><td colspan="5" class="empty">' + (all.length ? 'Nothing matches.' : 'No team leads visible to you yet.') + '</td></tr>') + '</tbody></table></div></section>';
+    return '<div class="samplebar"><span class="sbadge">PART SAMPLE</span><span><b>Chat responsiveness, internal 1:1s and client 1:1s are live.</b> Utilization, AI adoption and ESAT are sample numbers until the Keka data in Google Cloud is connected.</span></div>' +
+      '<div class="sctl"><input class="search" id="scQ" type="search" placeholder="Search a team lead" value="' + esc(state.scQ || '') + '"></div>' + head + chart + table;
+  }
+
   function renderSoon(t) {
     var tabs = navTabs(state.raw || state.data);
     var need = [];
@@ -2472,7 +2564,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     if (tabs.indexOf('client') !== -1 && !((state.sumDim || {}).client || {}).rows) need.push('client');
     need.forEach(function (k) { if (!((state.sumDim || {})[k] || {}).loading) { state.sumDim = state.sumDim || {}; delete state.sumDim[k]; } loadSumDim(k); });
     if (need.length && need.some(function (k) { var x = (state.sumDim || {})[k]; return x && x.loading; })) { $('#dimView').innerHTML = '<div class="empty box">Loading your teams and accounts…</div>'; return; }
-    $('#dimView').innerHTML = t === 'ai' ? aiPage() : samplePage(t).html;
+    $('#dimView').innerHTML = t === 'score' ? scorePage() : (t === 'ai' ? aiPage() : samplePage(t).html);
   }
   /* a one-line figure per area for the Summary row */
   function sampleHeadline(t) {
@@ -2628,7 +2720,7 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
         (sc.canAll ? (sc.scope === 'mine' ? (isOne ? 'your team' : 'your accounts') : (isOne ? 'all team leads' : 'all accounts')) : (isOne ? (d.preview ? 'their team' : 'your team') : (d.preview ? 'their accounts' : 'your accounts'))) + '</span></div>' +
         (sc.canAll ? '<div class="scopeseg" role="group" aria-label="Whose ' + (isOne ? 'team' : 'accounts') + '"><button type="button" data-dscope="mine" aria-pressed="' + (sc.scope === 'mine') + '">' + (isOne ? 'My team' : 'My accounts') + '<b>' + sc.mineCount + '</b></button><button type="button" data-dscope="all" aria-pressed="' + (sc.scope === 'all') + '">Everyone<b>' + sc.allCount + '</b></button></div>' : '') + '</div>' +
       '<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between"><div><h2>' + esc(headline) + '</h2><p>Due by ' + esc(due) + '. ' +
-      (isOne ? 'Done means the 1:1 was held and a Keka link was added as proof.' : 'Done means the meeting was held and the transcript was added.') + (sc.canAll ? (sc.scope === 'mine' ? ' Showing only your own ' + (isOne ? 'team' : 'accounts') + '. Switch to Everyone to see all.' : (admin ? '' : ' You are on the core team, so you see ' + (isOne ? 'every team lead' : 'every account') + '.')) : (d.preview ? '' : ' You see only your own ' + (isOne ? 'team' : 'accounts') + '.')) + '</p></div>' +
+      (isOne ? 'Done means the 1:1 shows as completed in Keka; it is read automatically.' : 'Done means the TL or manager who took the call emailed the call notes to the Media Ops mailbox; it is captured automatically.') + (sc.canAll ? (sc.scope === 'mine' ? ' Showing only your own ' + (isOne ? 'team' : 'accounts') + '. Switch to Everyone to see all.' : (admin ? '' : ' You are on the core team, so you see ' + (isOne ? 'every team lead' : 'every account') + '.')) : (d.preview ? '' : ' You see only your own ' + (isOne ? 'team' : 'accounts') + '.')) + '</p></div>' +
       '<div class="dctl">' +
         (showTools && isOne ? '<button class="btn sm primary" type="button" data-dadd="1">Add people</button>' : '') +
         (showTools && isOne ? '<button class="btn sm" type="button" data-dmap="1">Check mapping</button>' : '') +
@@ -3344,13 +3436,16 @@ body.oncp #cpLaunch,body.oncp #cpBox{display:none!important}
     if (e.target.id === 'agV') { state.agV = e.target.value; renderSoon(state.tab); }
   });
   $('#dimView').addEventListener('input', function (e) {
-    var KEY = { sQ: 'sq', aiQ: 'aiQ', agQ: 'agQ' }, id = e.target.id;
+    var KEY = { sQ: 'sq', aiQ: 'aiQ', agQ: 'agQ', scQ: 'scQ' }, id = e.target.id;
     if (!SOON[state.tab] || !KEY[id]) return;
     state[KEY[id]] = e.target.value; clearTimeout(state.sqT);
     state.sqT = setTimeout(function () { var pos = e.target.selectionStart; renderSoon(state.tab); var i = $('#' + id); if (i) { i.focus(); try { i.setSelectionRange(pos, pos); } catch (x) { /* ok */ } } }, 250);
   });
   $('#dimView').addEventListener('click', function (e) {
     if (!SOON[state.tab]) return;
+    var sb = e.target.closest('[data-scband]'), so2 = e.target.closest('[data-scopen]');
+    if (sb) { var v2 = sb.dataset.scband; state.scBand = (!v2 || state.scBand === v2) ? '' : v2; renderSoon(state.tab); return; }
+    if (so2) { state.scOpen = state.scOpen || {}; state.scOpen[so2.dataset.scopen] = !state.scOpen[so2.dataset.scopen]; renderSoon(state.tab); return; }
     var av = e.target.closest('[data-aiview]'), ao = e.target.closest('[data-agopen]'), ar = e.target.closest('[data-aireset]');
     if (av) { state.aiView = av.dataset.aiview; renderSoon(state.tab); return; }
     if (ao) { state.agOpen = state.agOpen || {}; state.agOpen[ao.dataset.agopen] = !state.agOpen[ao.dataset.agopen]; renderSoon(state.tab); return; }
